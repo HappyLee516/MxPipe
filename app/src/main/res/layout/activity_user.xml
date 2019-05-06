@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".User">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#cecece">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:onClick="back"
+            android:text="@string/back"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:text="@string/workinfo"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:onClick="Ok"
+            android:text="@string/ok"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:background="#cecece"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/unicode"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/team"
+            android:textAlignment="center"
+            android:padding="8dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textSize="16sp"
+            android:id="@+id/et_tno"
+            android:maxLength="2"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:background="@drawable/textview_bg"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/number"
+            android:textAlignment="center"
+            android:padding="8dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:maxLength="2"
+            android:inputType="number"
+            android:id="@+id/et_pno"
+            android:background="@drawable/textview_bg"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/area"
+            android:textAlignment="center"
+            android:padding="8dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:id="@+id/et_area"
+            android:textAlignment="center"
+            android:maxLength="1"
+            android:inputType="text"
+            android:background="@drawable/textview_bg"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:background="#cecece"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/personal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/like"
+            android:textAlignment="center"
+            android:padding="8dp"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textSize="16sp"
+            android:id="@+id/s_like"
+            android:maxLength="2"
+            android:entries="@array/like"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:background="@drawable/spinner_bg"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

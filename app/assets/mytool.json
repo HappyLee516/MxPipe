@@ -1,0 +1,27 @@
+
+{
+
+	"but1":["绘图","1"],
+	"but1":["工具","3"],
+    "but1":["其它","4"],
+
+	"but2":["1","展点编辑","4","circle.png"],
+	"but2":["1","管线","2","line.png"],
+	"but2":["1","管点","1","point.png"],
+	"but2":["1","矩形","Mx_Rect","rect.png"],
+	"but2":["1","文字","Mx_Text", "text.png"],
+	"but2":["1","直线","Mx_Line", "line.png"],
+	"but2":["1","画笔","Mx_DrawFree", "freedraw.png"],
+
+	"but2":["3","图层","Mx_LayerManager","layermanagerico.png"],
+	"but2":["3","测量","Mx_Measure","distance.png"],
+	"but2":["3","锁定点","5","pp.png"],
+	"but2":["3","锁定线","6","ll.png"],
+	"but2":["3","解除锁定","7","center_pwd.png"],
+
+	"but2":["4","导出MDB","55","center_list.png"],
+	"but2":["4","导入MDB","56","import.png"],
+	"but2":["4","导入DAT","57","dat.png"]
+
+}
+

@@ -1,0 +1,29 @@
+
+{
+
+	"but1":["ID_Tool_draw","1"],
+	"but1":["ID_Tool_comment","2"],
+	"but1":["ID_Tool_tool","3"],
+	"but1":["ID_Tool_edit","4"],
+
+	"but2":["1","Line","Mx_Line","line.png"],
+	"but2":["1","Line","Mx_Point","point.png"],
+	"but2":["1","Arc","Mx_Arc","arc.png"],
+	"but2":["1","Rect","Mx_Rect","rect.png"],
+	"but2":["1","Ellipse","Mx_Ellipse", "ellipse.png"],
+	"but2":["1","Text","Mx_Text", "text.png"],
+
+	"but2":["2","Custom","55","rect.png"],
+	"but2":["2","Custom","-65","rect.png"],
+	"but2":["2","Photo","Mx_Photo","photo.png"],
+	"but2":["2","Audio","Mx_Audio","audio.png"],
+
+	"but2":["3","Layer","Mx_LayerManager","layermanagerico.png"],
+	"but2":["3","Find","Mx_FindText","findtext.png"],
+	"but2":["3","Measure","Mx_Measure","distance.png"],
+	"but2":["3","Area","Mx_CaleArea","area.png"],
+
+	"but2":["4","Move","Mx_Move","move.png"]
+
+}
+

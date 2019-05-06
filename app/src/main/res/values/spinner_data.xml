@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>给水</item>
+        <item>排水</item>
+        <item>燃气</item>
+        <item>热力</item>
+        <item>电力</item>
+        <item>通讯</item>
+        <item>工业</item>
+        <item>人防</item>
+        <item>地铁</item>
+        <item>综合管沟</item>
+        <item>不明</item>
+    </string-array>
+
+    <string-array name="s_type">
+        <item>给水(JS)</item>
+        <item>中水(ZS)</item>
+        <item>原水(XS)</item>
+        <item>雨水(YS)</item>
+        <item>污水(WS)</item>
+        <item>雨污合流(HS)</item>
+        <item>煤气(MQ)</item>
+        <item>天然气(TR)</item>
+        <item>液化气(YH)</item>
+        <item>工业(GY)</item>
+        <item>石油(SY)</item>
+        <item>蒸汽(ZQ)</item>
+        <item>热水(RS)</item>
+        <item>供电(GD)</item>
+        <item>路灯(LD)</item>
+        <item>交通信号(XH)</item>
+        <item>中国电信(DX)</item>
+        <item>中国移动(YD)</item>
+        <item>中国联通(LT)</item>
+        <item>中国铁通(TT)</item>
+        <item>电力通讯(EX)</item>
+        <item>热力通讯(RX)</item>
+        <item>中国网通(WT)</item>
+        <item>长途传输局(CX)</item>
+        <item>监控信号(KX)</item>
+        <item>军用光缆(JY)</item>
+        <item>保密及专用通讯(BX)</item>
+        <item>有线电视(DS)</item>
+        <item>广播(GB)</item>
+        <item>人防(RF)</item>
+        <item>地下铁路(DT)</item>
+        <item>综合管沟边线(ZH)</item>
+        <item>城通管网(CT)</item>
+        <item>不明管线(BM)</item>
+    </string-array>
+
+    //给水
+    <string-array name="gongshui">
+        <item>给水</item>
+        <item>原水</item>
+        <item>中水</item>
+    </string-array>
+
+    <string-array name="gongshui_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>井边点</item>
+        <item>井边框</item>
+        <item>偏心点</item>
+        <item>盖堵</item>
+        <item>变径点</item>
+        <item>变材点</item>
+        <item>出地</item>
+        <item>弯头</item>
+        <item>预留口</item>
+        <item>进水口</item>
+        <item>出水口</item>
+        <item>交叉点</item>
+        <item>变坡点</item>
+        <item>入户</item>
+        <item>测压点</item>
+        <item>测流点</item>
+        <item>水质监测点</item>
+        <item>一般管线点</item>
+    </string-array>
+
+    <string-array name="gongshui_fushuwu">
+        <item>请选择</item>
+        <item>阀门井</item>
+        <item>水表井</item>
+        <item>窨井</item>
+        <item>阀门</item>
+        <item>阀门孔</item>
+        <item>消防栓</item>
+        <item>水表</item>
+        <item>排水阀</item>
+        <item>排气阀</item>
+        <item>泵站</item>
+        <item>加压泵站</item>
+        <item>测压点</item>
+        <item>测流点</item>
+        <item>水质监测点</item>
+    </string-array>
+
+    //排水
+    <string-array name="paishui">
+        <item>雨水</item>
+        <item>污水</item>
+        <item>雨污合流</item>
+    </string-array>
+    <string-array name="paishui_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>变径点</item>
+        <item>变材点</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>五通</item>
+        <item>多通</item>
+        <item>图边点</item>
+        <item>井边框</item>
+        <item>进水口</item>
+        <item>出水口</item>
+        <item>偏心点</item>
+        <item>预留口</item>
+        <item>边线点</item>
+        <item>转折点</item>
+        <item>直线点</item>
+
+    </string-array>
+    <string-array name="paishui_fushuwu">
+        <item>请选择</item>
+        <item>雨水井</item>
+        <item>雨篦</item>
+        <item>污篦</item>
+        <item>污水井</item>
+        <item>检修井</item>
+        <item>检查井</item>
+        <item>阀门</item>
+        <item>窨井</item>
+        <item>溢流井</item>
+        <item>排水泵站</item>
+        <item>闸门井</item>
+        <item>排泥井</item>
+        <item>化粪池</item>
+    </string-array>
+
+    //燃气
+    <string-array name="ranqi">
+        <item>天然气</item>
+        <item>液化气</item>
+        <item>煤气</item>
+    </string-array>
+    <string-array name="ranqi_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>图边点</item>
+        <item>井边框</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>管帽</item>
+        <item>变材点</item>
+        <item>一井多阀</item>
+        <item>弯头</item>
+        <item>出地</item>
+        <item>偏心点</item>
+    </string-array>
+    <string-array name="ranqi_fushuwu">
+        <item>请选择</item>
+        <item>阀门</item>
+        <item>窨井</item>
+        <item>阀门井</item>
+        <item>泵站</item>
+        <item>压力表</item>
+        <item>调压箱</item>
+        <item>凝水缸</item>
+        <item>波形管</item>
+        <item>阴极测试桩</item>
+        <item>调压站</item>
+    </string-array>
+
+    //热力
+    <string-array name="reli">
+        <item>热水</item>
+        <item>蒸汽</item>
+    </string-array>
+    <string-array name="reli_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>图边点</item>
+        <item>井边框</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>变材点</item>
+        <item>变径点</item>
+        <item>弯头</item>
+        <item>管帽</item>
+        <item>出地</item>
+        <item>一井多阀</item>
+    </string-array>
+    <string-array name="reli_fushuwu">
+        <item>请选择</item>
+        <item>阀门井</item>
+        <item>检修井</item>
+        <item>阀门</item>
+        <item>吹扫井</item>
+        <item>窨井</item>
+        <item>真空表</item>
+        <item>泵站</item>
+        <item>疏水</item>
+        <item>排潮孔</item>
+        <item>固定节</item>
+        <item>安全阀</item>
+    </string-array>
+
+    //电力
+    <string-array name="dianli">
+        <item>供电</item>
+        <item>路灯</item>
+        <item>交通信号</item>
+    </string-array>
+    <string-array name="dianli_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>非普查</item>
+        <item>上杆</item>
+        <item>探测点</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>五通</item>
+        <item>多通</item>
+        <item>井边点</item>
+        <item>图边点</item>
+        <item>井边框</item>
+        <item>转折点</item>
+        <item>变径点</item>
+        <item>预留口</item>
+        <item>出地</item>
+        <item>偏心点</item>
+    </string-array>
+    <string-array name="dianli_fushuwu">
+        <item>请选择</item>
+        <item>电杆</item>
+        <item>人孔</item>
+        <item>手孔</item>
+        <item>路灯</item>
+        <item>变压器</item>
+        <item>接线箱</item>
+        <item>通风井</item>
+        <item>配电室</item>
+        <item>广告牌</item>
+        <item>景观灯</item>
+        <item>交通信号灯</item>
+        <item>高压线塔架</item>
+    </string-array>
+
+    //通信
+    <string-array name="tongxin">
+        <item>中国电信</item>
+        <item>中国联通</item>
+        <item>中国移动</item>
+        <item>中国铁通</item>
+        <item>电力通讯</item>
+        <item>热力通讯</item>
+        <item>中国网通</item>
+        <item>长途传输局</item>
+        <item>监控信号</item>
+        <item>军用光缆</item>
+        <item>保密及专用通讯</item>
+        <item>有线电视</item>
+        <item>广播</item>
+    </string-array>
+    <string-array name="tongxin_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>井边点</item>
+        <item>井边框</item>
+        <item>上杆</item>
+        <item>图边点</item>
+        <item>转折点</item>
+        <item>出地</item>
+        <item>偏心点</item>
+        <item>边线点</item>
+        <item>变径点</item>
+        <item>预留口</item>
+        <item>三分支</item>
+        <item>四分支</item>
+        <item>五分支</item>
+        <item>六分支</item>
+        <item>七分支</item>
+        <item>同沟分支点</item>
+    </string-array>
+    <string-array name="tongxin_fushuwu">
+        <item>请选择</item>
+        <item>人孔</item>
+        <item>手孔</item>
+        <item>接线箱</item>
+        <item>电话亭</item>
+        <item>摄像头</item>
+        <item>监控器</item>
+    </string-array>
+
+    //工业
+    <string-array name="gongye">
+        <item>工业</item>
+        <item>石油</item>
+    </string-array>
+    <string-array name="gongye_tezheng">
+        <item>请选择</item>
+        <item>量测点</item>
+        <item>探测点</item>
+        <item>非普查</item>
+        <item>三通</item>
+        <item>四通</item>
+        <item>图边点</item>
+        <item>井边框</item>
+        <item>边线点</item>
+        <item>转折点</item>
+        <item>变径点</item>
+        <item>变材点</item>
+        <item>预留口</item>
+        <item>一井多阀</item>
+        <item>偏心点</item>
+    </string-array>
+    <string-array name="gongye_fushuwu">
+        <item>请选择</item>
+        <item>泵站</item>
+        <item>阀门</item>
+        <item>阀门井</item>
+        <item>窨井</item>
+    </string-array>
+
+    //人防
+    <string-array name="renfang">
+        <item>人防</item>
+        <item>城通管网</item>
+    </string-array>
+    <string-array name="renfang_tezheng">
+        <item>请选择</item>
+        <item>探测点</item>
+        <item>量测点</item>
+        <item>非普查</item>
+        <item>变径点</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>偏心点</item>
+        <item>井边框</item>
+        <item>图边点</item>
+    </string-array>
+    <string-array name="renfang_fushuwu">
+        <item>请选择</item>
+        <item>窨井</item>
+    </string-array>
+
+    //地铁
+    <string-array name="ditie">
+        <item>地下铁路</item>
+    </string-array>
+    <string-array name="ditie_tezheng">
+        <item>请选择</item>
+        <item>探测点</item>
+        <item>量测点</item>
+        <item>非普查</item>
+        <item>变径点</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>偏心点</item>
+        <item>井边框</item>
+        <item>图边点</item>
+    </string-array>
+    <string-array name="ditie_fushuwu">
+        <item>请选择</item>
+        <item>窨井</item>
+    </string-array>
+
+    //综合管沟
+    <string-array name="zongheguangou">
+        <item>综合管沟边线</item>
+    </string-array>
+    <string-array name="zongheguangou_tezheng">
+        <item>请选择</item>
+        <item>探测点</item>
+        <item>量测点</item>
+        <item>非普查</item>
+        <item>变径点</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>偏心点</item>
+        <item>井边框</item>
+        <item>图边点</item>
+    </string-array>
+    <string-array name="zongheguangou_fushuwu">
+        <item>请选择</item>
+        <item>窨井</item>
+        <item>通风口</item>
+        <item>进风井</item>
+        <item>排风井</item>
+        <item>投料口</item>
+        <item>检查井</item>
+        <item>积水池</item>
+        <item>排污井</item>
+    </string-array>
+
+    //不明
+    <string-array name="buming">
+        <item>不明管线</item>
+    </string-array>
+
+    <string-array name="buming_fushuwu">
+        <item>请选择</item>
+        <item>检查井</item>
+        <item>检修井</item>
+        <item>窨井</item>
+    </string-array>
+
+    <string-array name="buming_tezheng">
+        <item>请选择</item>
+        <item>探测点</item>
+        <item>量测点</item>
+        <item>非普查</item>
+        <item>变径点</item>
+        <item>边线点</item>
+        <item>预留口</item>
+        <item>偏心点</item>
+        <item>井边框</item>
+        <item>图边点</item>
+    </string-array>
+
+    //井盖材质
+    <string-array name="jinggaicaizhi">
+        <item>铁</item>
+        <item>砼</item>
+        <item>塑料</item>
+        <item>其他</item>
+    </string-array>
+
+    //井材质
+    <string-array name="jingcaizhi">
+        <item>水泥</item>
+        <item>砖混</item>
+        <item>砼</item>
+    </string-array>
+
+    //井盖状态
+    <string-array name="jinggaizhuangtai">
+        <item>正常</item>
+        <item>丢失</item>
+        <item>占压</item>
+        <item>受控</item>
+        <item>掩埋</item>
+        <item>破损</item>
+    </string-array>
+
+    //井盖形状
+    <string-array name="jinggaixingzhuang">
+        <item>圆形</item>
+        <item>矩形</item>
+        <item>其他</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_js">
+        <item>直埋</item>
+        <item>管埋</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_ps">
+        <item>直埋</item>
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_rl">
+        <item>直埋</item>
+        <item>管沟</item>
+        <item>架空</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_dl">
+        <item>管埋</item>
+        <item>管块</item>
+        <item>管沟</item>
+        <item>架空</item>
+        <item>上架</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_tx">
+        <item>直埋</item>
+        <item>管埋</item>
+        <item>管块</item>
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_rq">
+        <item>直埋</item>
+        <item>管埋</item>
+        <item>管块</item>
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_bm">
+        <item>直埋</item>
+        <item>管埋</item>
+        <item>管块</item>
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_gy">
+        <item>管埋</item>
+        <item>管块</item>
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_rf">
+        <item>人防</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_dt">
+        <item>地铁</item>
+    </string-array>
+
+    //埋设方式
+    <string-array name="mshway_zh">
+        <item>管沟</item>
+        <item>管廊</item>
+    </string-array>
+
+    //材质-给水
+    <string-array name="caizhi_js">
+        <item>铸铁</item>
+        <item>砼</item>
+        <item>球墨铸铁</item>
+        <item>钢</item>
+        <item>玻璃钢</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>高密度聚乙烯</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-排水
+    <string-array name="caizhi_ps">
+        <item>砼</item>
+        <item>铸铁</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>砖石</item>
+        <item>砖</item>
+        <item>钢</item>
+        <item>石</item>
+        <item>石棉</item>
+        <item>陶瓷</item>
+        <item>玻璃钢</item>
+        <item>高密度聚乙烯</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-电力
+    <string-array name="caizhi_dl">
+        <item>铜</item>
+        <item>铸铁</item>
+        <item>钢</item>
+        <item>砼</item>
+        <item>玻璃钢</item>
+        <item>砖石</item>
+        <item>砖</item>
+        <item>钢芯铝绞线</item>
+        <item>玻璃钢</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-热力
+    <string-array name="caizhi_rl">
+        <item>钢</item>
+    </string-array>
+
+    //材质-燃气
+    <string-array name="caizhi_rq">
+        <item>铸铁</item>
+        <item>钢</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-工业
+    <string-array name="caizhi_gy">
+        <item>钢</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-通讯
+    <string-array name="caizhi_tx">
+        <item>光纤</item>
+        <item>铜</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-人防
+    <string-array name="caizhi_rf">
+        <item>砼</item>
+        <item>钢</item>
+        <item>铸铁</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>砖</item>
+        <item>砖石</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-地铁
+    <string-array name="caizhi_dt">
+        <item>砼</item>
+        <item>钢</item>
+        <item>铸铁</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>砖</item>
+        <item>砖石</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-综合
+    <string-array name="caizhi_zh">
+        <item>砼</item>
+        <item>钢</item>
+        <item>铸铁</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>砖</item>
+        <item>砖石</item>
+        <item>请选择</item>
+    </string-array>
+
+    //材质-不明
+    <string-array name="caizhi_bm">
+        <item>砼</item>
+        <item>钢</item>
+        <item>铸铁</item>
+        <item>聚乙烯</item>
+        <item>聚氯乙烯</item>
+        <item>砖</item>
+        <item>砖石</item>
+        <item>请选择</item>
+    </string-array>
+
+    //压力-电力
+    <string-array name="dianli_yali">
+        <item>请选择</item>
+        <item>0.22</item>
+        <item>0.38</item>
+        <item>10</item>
+        <item>15</item>
+        <item>110</item>
+    </string-array>
+
+    //压力-工业
+    <string-array name="gongye_yali">
+        <item>请选择</item>
+        <item>无压</item>
+        <item>低压</item>
+        <item>中压</item>
+        <item>高压</item>
+    </string-array>
+
+    //压力-燃气
+    <string-array name="ranqi_yali">
+        <item>请选择</item>
+        <item>低压</item>
+        <item>中压</item>
+        <item>次高压</item>
+        <item>高压</item>
+        <item>超高压</item>
+    </string-array>
+    
+    //压力-热力
+    <string-array name="reshui_yali">
+        <item>请选择</item>
+        <item>0.2M</item>
+        <item>1.0M</item>
+        <item>4.0M</item>
+        <item>低压</item>
+        <item>中压</item>
+        <item>次高压</item>
+        <item>高压</item>
+    </string-array>
+
+    //流向
+    <string-array name="direction">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    //使用状态
+    <string-array name="state">
+        <item>在用</item>
+        <item>废弃</item>
+        <item>空管</item>
+        <item>其他</item>
+    </string-array>
+
+    //数据来源
+    <string-array name="data">
+        <item>实测</item>
+        <item>参考资料</item>
+        <item>权属指认</item>
+    </string-array>
+
+    //偏好
+    <string-array name="like">
+        <item>点号</item>
+        <item>代码</item>
+    </string-array>
+
+</resources>

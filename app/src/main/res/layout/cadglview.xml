@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+                  <Button
+            android:id="@+id/zoomE"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="ZoomE" />
+
+        <Button
+            android:id="@+id/userSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="userSelect" />
+
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="undo" />
+
+        <Button
+            android:id="@+id/getAllLayer"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="getAllLayer" />
+
+        <Button
+            android:id="@+id/DrawText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="DrawText" />
+
+        <Button
+            android:id="@+id/Test"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Test" />
+
+   </LinearLayout>
+
+          <org.cocos2dx.lib.ResizeLayout
+        android:id="@+id/my_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    	
+          <org.cocos2dx.lib.Cocos2dxEditBox
+            android:id="@+id/my_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+              <org.cocos2dx.lib.Cocos2dxGLSurfaceView
+                  android:id="@+id/view_cad"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" />
+    </org.cocos2dx.lib.ResizeLayout>
+    
+          
+</LinearLayout>

@@ -1,0 +1,104 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+    <string name="app_name">BY管线</string>
+    <string name="open">打开文件</string>
+    <string name="point">管点信息</string>
+
+    <string name="leixing">管点分类</string>
+    <string name="tezheng">管点特征</string>
+    <string name="fushuwu">附属物</string>
+    <string name="jianzhuwu">建(构)筑物</string>
+    <string name="caizhi">材质</string>
+    <string name="maishefangshi">埋设方式</string>
+    <string name="dmgch">地面高程</string>
+    <string name="point_type">管点类型</string>
+    <string name="back">返回</string>
+    <string name="sure">确认</string>
+    <string name="addpoint">新增管点信息</string>
+    <string name="code">物探点号</string>
+    <string name="jdmsh">井底深</string>
+    <string name="jgxzh">井盖形状</string>
+    <string name="jgchc">井盖尺寸</string>
+    <string name="jgczh">井盖材质</string>
+    <string name="jgzht">井盖状态</string>
+    <string name="jczh">井材质</string>
+    <string name="jchc">井尺寸</string>
+    <string name="jbmsh">井脖埋深</string>
+    <string name="jbczh">井脖材质</string>
+    <string name="jbchc">井脖尺寸</string>
+    <string name="state">使用状态</string>
+    <string name="data">数据来源</string>
+    <string name="beizhu">备注</string>
+
+    <string name="pointinfo">管点详细信息</string>
+    <string name="directionlineinfo">方向线信息</string>
+    <string name="maishen">埋深</string>
+    <string name="close">关闭</string>
+    <string name="ok">保存</string>
+
+    <string name="adddirec">新增连线</string>
+    <string name="yali">压力</string>
+
+    <string name="line">管线信息</string>
+    <string name="lineinfo">管线详细信息</string>
+
+    <string name="gchtype">高程类型</string>
+    <string name="linetype">管线类别</string>
+    <string name="scode">起点点号</string>
+    <string name="ecode">终点点号</string>
+    <string name="smaishen">起点埋深</string>
+    <string name="emaishen">终点埋深</string>
+    <string name="type">类别</string>
+    <string name="mshway">埋设方式</string>
+
+    <string name="guanjing">管径</string>
+
+    <string name="kuan">宽</string>
+    <string name="gao">高</string>
+
+    <string name="num">条数</string>
+    <string name="allkong">总孔数</string>
+    <string name="usedkong">已用孔数</string>
+    <string name="road">道路名称</string>
+
+    <string name="direc">流向</string>
+
+    <string name="daochu">导出</string>
+    <string name="dakai">打开标注</string>
+    <string name="guanbi">关闭标注</string>
+
+    <string name="chakan">查看</string>
+    <string name="yidong">移动</string>
+    <string name="forline">设为起点</string>
+    <string name="del">删除</string>
+
+    <string name="test">测试</string>
+
+    <string name="workinfo">作业信息</string>
+    <string name="unicode">物探点号信息</string>
+    <string name="personal">个人喜好设置</string>
+    <string name="team">小组编号</string>
+    <string name="number">个人编号</string>
+    <string name="area">区域编号</string>
+
+    <string name="like">dat导入偏好</string>
+
+    <string name="paper">打开图纸</string>
+    <string name="oper">操作说明</string>
+    <string name="areas">区域划分</string>
+    <string name="numbers">编号详情</string>
+
+    <string name="radius">请输入半径：</string>
+    <string name="cancel">取消</string>
+
+    <string name="choose">请选择要打开的管种：</string>
+    <string name="all">全选</string>
+
+    <string name="newPipe">请选择要新建的管种</string>
+    <string name="add">#062</string>
+    <string name="addall">#187</string>
+    <string name="remove">#060</string>
+    <string name="removeall">#171</string>
+
+    <string name="saveas">请输入目标文件名：</string>
+
+</resources>

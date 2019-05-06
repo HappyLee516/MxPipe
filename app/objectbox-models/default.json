@@ -1,0 +1,66 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:7581654111666877900",
+      "lastPropertyId": "3:7820628095762819196",
+      "name": "PipeNo",
+      "properties": [
+        {
+          "id": "1:5101944510435403563",
+          "name": "id"
+        },
+        {
+          "id": "2:3459038583315324100",
+          "name": "type"
+        },
+        {
+          "id": "3:7820628095762819196",
+          "name": "no"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3594662881000568806",
+      "lastPropertyId": "5:5926033422183697195",
+      "name": "CodeNumber",
+      "properties": [
+        {
+          "id": "1:3176152205414466983",
+          "name": "id"
+        },
+        {
+          "id": "2:6780707469679356196",
+          "name": "filename"
+        },
+        {
+          "id": "3:1943541844956826194",
+          "name": "type"
+        },
+        {
+          "id": "4:5112535959495922642",
+          "name": "no"
+        },
+        {
+          "id": "5:5926033422183697195",
+          "name": "pre"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:3594662881000568806",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
