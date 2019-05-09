@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#00d4ff"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="@dimen/dp_8">
 
         <TextView
             android:id="@+id/point_back"
@@ -21,16 +21,16 @@
             android:background="@android:color/transparent"
             android:text="@string/close"
             android:textColor="#fff"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/sp_16"/>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/point"
             android:textColor="#fff"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/sp_16"/>
 
         <TextView
             android:id="@+id/newpoint_ok"
@@ -39,7 +39,7 @@
             android:background="@android:color/transparent"
             android:textColor="#fff"
             android:text="@string/ok"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/sp_16"/>
 
     </LinearLayout>
 
@@ -54,23 +54,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/code"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                <TextView
-                   android:layout_width="0dp"
+                   android:layout_width="@dimen/dp_0"
                    android:layout_height="match_parent"
                    android:layout_weight="2"
                    android:id="@+id/et_code"
@@ -78,57 +78,57 @@
                    android:focusableInTouchMode="true"
                    android:gravity="center"
                    android:textColor="#000"
-                   android:textSize="16sp"/>
+                   android:textSize="@dimen/sp_16"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/leixing"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <Spinner
                     android:id="@+id/s_type"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:entries="@array/type"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:spinnerMode="dropdown"
                     android:textAlignment="center">
                 </Spinner>
 
                 <Spinner
                     android:id="@+id/s_type_item"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:layout_weight="1"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:entries="@array/gongshui"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:gravity="center"
                     android:spinnerMode="dropdown"
                     android:textAlignment="center"/>
@@ -137,37 +137,37 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:textColor="#000"
                     android:text="@string/tezheng"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <Spinner
                     android:id="@+id/s_tezheng"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:spinnerMode="dropdown"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:textAlignment="center">
                 </Spinner>
 
@@ -175,34 +175,34 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/fushuwu"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <Spinner
                     android:id="@+id/s_fushuwu"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:spinnerMode="dropdown"
@@ -213,30 +213,30 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/dmgch"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <EditText
                     android:id="@+id/np_dmgch"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="@drawable/textview_bg"
@@ -245,21 +245,21 @@
                     android:maxLength="7"
                     android:gravity="center"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:id="@+id/ll_jing"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_0"
+                android:layout_marginTop="@dimen/dp_8"
                 android:layout_weight="10"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -267,23 +267,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/dp_20"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jdmsh"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <EditText
                         android:id="@+id/np_jdmsh"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:background="@drawable/textview_bg"
@@ -291,73 +291,73 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         android:textColor="#000"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jgxzh"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <Spinner
                         android:id="@+id/s_jgxzh"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:background="@drawable/spinner_bg"
                         android:popupBackground="@android:color/white"
                         android:entries="@array/jinggaixingzhuang"
                         android:spinnerMode="dropdown"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp_16"
                         android:textAlignment="center"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jgchc"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <EditText
                         android:id="@+id/np_jgchc"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:background="@drawable/textview_bg"
@@ -365,39 +365,39 @@
                         android:inputType="numberDecimal"
                         android:gravity="center"
                         android:textColor="#000"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jgczh"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <Spinner
                         android:id="@+id/s_jgczh"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp_16"
                         android:background="@drawable/spinner_bg"
                         android:popupBackground="@android:color/white"
                         android:entries="@array/jinggaicaizhi"
@@ -407,34 +407,34 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jgzht"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <Spinner
                         android:id="@+id/s_jgzht"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp_16"
                         android:background="@drawable/spinner_bg"
                         android:popupBackground="@android:color/white"
                         android:entries="@array/jinggaizhuangtai"
@@ -444,34 +444,34 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jczh"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <Spinner
                         android:id="@+id/s_jczh"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sp_16"
                         android:background="@drawable/spinner_bg"
                         android:popupBackground="@android:color/white"
                         android:entries="@array/jingcaizhi"
@@ -481,31 +481,31 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="@dimen/dp_8"
                         android:textColor="#000"
                         android:text="@string/jchc"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
 
                     <EditText
                         android:id="@+id/np_jchc"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/dp_0"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:background="@drawable/textview_bg"
@@ -513,13 +513,13 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         android:textColor="#000"
-                        android:textSize="16sp"/>
+                        android:textSize="@dimen/sp_16"/>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:background="#efefef"/>
 
             </LinearLayout>
@@ -527,62 +527,62 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/state"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <Spinner
                     android:id="@+id/np_s_state"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:entries="@array/state"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:textAlignment="center"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/data"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <Spinner
                     android:id="@+id/np_s_data"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
                     android:background="@drawable/spinner_bg"
                     android:popupBackground="@android:color/white"
                     android:entries="@array/data"
@@ -592,46 +592,46 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
                 android:background="#efefef"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="8dp"
+                    android:padding="@dimen/dp_8"
                     android:text="@string/beizhu"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
                 <EditText
                     android:id="@+id/np_beizhu"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:background="@drawable/textview_bg"
                     android:focusableInTouchMode="true"
                     android:gravity="center"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/sp_16"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_10"
                 android:background="#efefef"/>
 
         </LinearLayout>

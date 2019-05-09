@@ -11,32 +11,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingEnd="50dp"
-        android:paddingStart="50dp"
-        android:paddingTop="10dp"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_50"
+        android:paddingStart="@dimen/dp_50"
+        android:paddingTop="@dimen/dp_10"
         android:text="@string/chakan"
         android:textColor="#000"
-        android:textSize="16sp"
+        android:textSize="@dimen/sp_16"
         />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="#cfcfcf"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingStart="@dimen/dp_50"
+        android:paddingEnd="@dimen/dp_50"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
         android:id="@+id/tv_del"
         android:text="@string/del"
         android:textColor="#000"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/sp_16"
         />
 
 </LinearLayout>

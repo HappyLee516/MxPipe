@@ -505,7 +505,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         pop.setOutsideTouchable(true);
-        pop.setFocusable(true);
+        pop.setFocusable(false);
         pop.setIsdismiss(true);
         pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
@@ -596,7 +596,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         pop.setOutsideTouchable(true);
-        pop.setFocusable(true);
+        pop.setFocusable(false);
         pop.setIsdismiss(true);
         pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
@@ -726,7 +726,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     }
 
     private void point_pop(final int flag, double dx, double dy, final double dz) {
-        //Toast.makeText(getApplication(),"弹出点编辑窗口",Toast.LENGTH_SHORT).show();
         if (flag == 1 || flag == 3) {
             pview = LayoutInflater.from(getActivity()).inflate(R.layout.newpoint, null);
         } else {
@@ -740,7 +739,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         int height = (int) (manager.getDefaultDisplay().getHeight() * 0.8);
 
         final Popup ppw = new Popup(pview, width, height);
-        //        ppw.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        //ppw.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
         ppw.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ColorDrawable cd = new ColorDrawable(0x000000);
         ppw.setBackgroundDrawable(cd);
@@ -912,7 +911,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     bmPoint.setPipeline_type(type.getSelectedItem().toString());//管线类型-大类
 
                     bmPoint.setEccentric_well_loc("");//偏心井位
-                    bmPoint.setEXPNO("");//EXPNO0
+                    bmPoint.setEXPNO("");//EXPNO
                     bmPoint.setBeizhu(TextUtils.isEmpty(beizhu.getText()) ? "" : beizhu.getText().toString());//备注
                     bmPoint.setOperator_library("");//操作库
 
@@ -1145,7 +1144,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         ppw.setOutsideTouchable(false);
-        ppw.setFocusable(true);
+        ppw.setFocusable(false);
         ppw.setIsdismiss(false);
         ppw.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 

@@ -10,37 +10,37 @@
                   <Button
             android:id="@+id/zoomE"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="ZoomE" />
 
         <Button
             android:id="@+id/userSelect"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="userSelect" />
 
         <Button
             android:id="@+id/undo"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="undo" />
 
         <Button
             android:id="@+id/getAllLayer"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="getAllLayer" />
 
         <Button
             android:id="@+id/DrawText"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="DrawText" />
 
         <Button
             android:id="@+id/Test"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/dp_40"
             android:text="Test" />
 
    </LinearLayout>

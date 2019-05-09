@@ -6,64 +6,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="20dp"
+    android:layout_marginStart="@dimen/dp_10"
+    android:layout_marginEnd="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_marginBottom="@dimen/dp_20"
     tools:context=".MainAct">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:padding="8dp"
+        android:textSize="@dimen/sp_24"
+        android:padding="@dimen/dp_8"
         android:text="@string/workinfo"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5"
         android:onClick="user"
         android:drawableStart="@drawable/user"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="#cecece"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:padding="8dp"
+        android:textSize="@dimen/sp_24"
+        android:padding="@dimen/dp_8"
         android:text="@string/paper"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5"
         android:onClick="open"
         android:drawableStart="@drawable/open"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="#cecece"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:padding="8dp"
+        android:textSize="@dimen/sp_24"
+        android:padding="@dimen/dp_8"
         android:text="@string/areas"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5"
         android:onClick="Data"
         android:drawableStart="@drawable/areas"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:background="#cecece"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:padding="8dp"
+        android:textSize="@dimen/sp_24"
+        android:padding="@dimen/dp_8"
         android:text="@string/numbers"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp_5"
         android:onClick="Nums"
         android:drawableStart="@drawable/oper"/>
 
