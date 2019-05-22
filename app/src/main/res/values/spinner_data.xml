@@ -233,6 +233,7 @@
     <string-array name="dianli_tezheng">
         <item>请选择</item>
         <item>量测点</item>
+        <item>探测点</item>
         <item>非普查</item>
         <item>上杆</item>
         <item>探测点</item>
@@ -495,6 +496,7 @@
 
     //埋设方式
     <string-array name="mshway_dl">
+        <item>直埋</item>
         <item>管埋</item>
         <item>管块</item>
         <item>管沟</item>

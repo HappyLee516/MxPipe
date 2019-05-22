@@ -1,7 +1,5 @@
 package com.mxpipe.lih.mxpipe;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,9 +7,6 @@ import java.util.Map;
  *Created by LiHuan at 9:14 on 2018/12/5
  */
  class Mark_Util {
-    
-    String p_type = "";
-    String p_item = "";
 
     static String[] marknames = {"1.dwg","03.dwg","13.dwg","BC.dwg","BDF.dwg","BDZ.dwg","BJ.dwg","CD.dwg",
         "CLD.dwg","CSJ.dwg","CTD.dwg","CXJ.dwg","CYD.dwg","DD.dwg","DG.dwg","DHT.dwg","DLSK.dwg",
@@ -136,7 +131,10 @@ import java.util.Map;
         SK.put("通讯","DXSK");
     }
 
-    String getMark(int i,String s){
+    /*
+     *
+     */
+    String getMark(int i,String s,String dalei,String xiaolei){
         String mname = "1.dwg";
         switch (i){
             case 1:
@@ -149,36 +147,30 @@ import java.util.Map;
                     break;
                 }else if(f.endsWith("1")){
                         char n = f.charAt(f.length()-2);
-                        Log.i("nnnnnn","" + n);
                         switch (n){
                             case 49:
-                                if(YJ.get(p_type) != null)
-                                    mname = YJ.get(p_type)+".dwg";
-                                Log.i("case49",mname);
+                                if(YJ.get(dalei) != null)
+                                    mname = YJ.get(dalei)+".dwg";
                                 break;
                             case 50:
-                                String st = FMJ.get(p_type);
+                                String st = FMJ.get(dalei);
                                 if(st != null && st.endsWith("1")){
-                                    mname = FMJ.get(p_item)+".dwg";
+                                    mname = FMJ.get(xiaolei)+".dwg";
                                 }else {
                                     mname = st+".dwg";
                                 }
-                                Log.i("case50",mname);
                                 break;
                             case 51:
-                                if(JXJ.get(p_type) != null)
-                                    mname = JXJ.get(p_type)+".dwg";
-                                Log.i("case51",mname);
+                                if(JXJ.get(dalei) != null)
+                                    mname = JXJ.get(dalei)+".dwg";
                                 break;
                             case 52:
-                                if(RK.get(p_type) != null)
-                                    mname = RK.get(p_type)+".dwg";
-                                Log.i("case52",mname);
+                                if(RK.get(dalei) != null)
+                                    mname = RK.get(dalei)+".dwg";
                                 break;
                             case 53:
-                                if(SK.get(p_type) != null)
-                                    mname = SK.get(p_type)+".dwg";
-                                Log.i("case53",mname);
+                                if(SK.get(dalei) != null)
+                                    mname = SK.get(dalei)+".dwg";
                                 break;
                         }
                 }else {

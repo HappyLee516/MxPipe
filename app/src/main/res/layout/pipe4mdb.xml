@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         android:padding="@dimen/dp_8"
         android:textColor="#f00"
         android:text="@string/newPipe"/>
@@ -37,7 +37,8 @@
             android:layout_weight="3"
             android:id="@+id/list_left"
             android:choiceMode="multipleChoice"
-            android:divider="@null"/>
+            android:divider="#fff"
+            android:dividerHeight="@dimen/dp_2"/>
 
     </LinearLayout>
 
@@ -48,6 +49,7 @@
         android:layout_marginStart="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_30"
         android:gravity="center"
+        android:orientation="horizontal"
         android:layout_marginBottom="@dimen/dp_5">
 
         <TextView
@@ -58,6 +60,7 @@
             android:layout_weight="1"
             android:background="@drawable/textview_bg"
             android:padding="@dimen/dp_8"
+            android:textColor="#000"
             android:text="@string/cancel"
             android:textAlignment="center"
             android:textSize="@dimen/sp_16"/>
@@ -70,6 +73,7 @@
             android:layout_weight="1"
             android:background="@drawable/textview_bg"
             android:padding="@dimen/dp_8"
+            android:textColor="#000"
             android:text="@string/sure"
             android:textAlignment="center"
             android:textSize="@dimen/sp_16"/>

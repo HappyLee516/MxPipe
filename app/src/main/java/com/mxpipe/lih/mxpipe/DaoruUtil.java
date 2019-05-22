@@ -30,12 +30,15 @@ import com.healthmarketscience.jackcess.Table;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static com.mxpipe.lih.mxpipe.DaochuUtil.lm;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
+import static com.mxpipe.lih.mxpipe.StartAct.im_db;
 
- class DaoruUtil {
+class DaoruUtil {
     
     static boolean Daoru(Intent data, Context context) {
         Uri uri = data.getData();
@@ -71,7 +74,7 @@ import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
                         for (Row row : table) {
                             String x = String.valueOf(row.get("Y"));
                             String y = String.valueOf(row.get("X"));
-                            String type_item = "";
+                            String type_item = row.getString("管线性质");
 
                             String code = row.getString("物探点号");
                             if(code == null){
@@ -101,17 +104,15 @@ import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
 
                             String mark_name;
                             Mark_Util mu = new Mark_Util();
-                            mu.p_item = type_item;
-                            mu.p_type = ti_t_Util.getType(type_item);
                             StartAct startAct = (StartAct) context;
                             if(" ".equals(tzh) || "".equals(tzh) || tzh == null) {
-                                if(mu.getMark(2, fshw) != null)
-                                    mark_name = mu.getMark(2, fshw);
+                                if(mu.getMark(2, fshw,type,type_item) != null)
+                                    mark_name = mu.getMark(2, fshw,type,type_item);
                                 else
                                     mark_name = "1.dwg";
                             } else if(" ".equals(fshw) || "".equals(fshw) || fshw == null) {
-                                if(mu.getMark(1, tzh) != null)
-                                    mark_name = mu.getMark(1, tzh);
+                                if(mu.getMark(1, tzh,type,type_item) != null)
+                                    mark_name = mu.getMark(1, tzh,type,type_item);
                                 else
                                     mark_name = "1.dwg";
                             } else {
@@ -263,6 +264,158 @@ import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
         } else {
             Toast.makeText(context, "选择的文件格式不正确！", Toast.LENGTH_SHORT).show();
             return false;
+        }
+    }
+
+    static List<BmPoint> Mdb2Bps(Intent data, Context context){
+        Uri uri = data.getData();
+        List<BmPoint> bps = new ArrayList<>();
+        String path;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
+            path = getPath(context, uri);
+            //Toast.makeText(this, path, Toast.LENGTH_SHORT).show();
+        } else {//4.4以下下系统调用方法
+            path = getRealPathFromURI(uri,context);
+        }
+        File file = new File(path);
+        if (file.getName().endsWith("mdb") || file.getName().endsWith("MDB")) {
+            try {
+                im_db = DatabaseBuilder.open(file);
+                for (String s : im_db.getTableNames()) {
+                    System.out.println(s);
+                    Table table = im_db.getTable(s);
+                    //判断是点表还是线表
+                    if (s.endsWith("POINT")) {
+                        BmPoint bp;
+                        for (Row row : table) {
+                            bp = new BmPoint();
+                            bp.setMap_dot(row.getString("图上点号"));
+                            bp.setExploration_dot(row.getString("物探点号"));
+                            bp.setFeature(row.getString("特征"));
+                            bp.setAppendages(row.getString("附属物"));
+                            bp.setX(row.getDouble("Y"));
+                            bp.setY(row.getDouble("X"));
+                            bp.setSign_rotation_angle(row.get("符号旋转角") == null ? 0.0f : row.getFloat("符号旋转角"));
+                            bp.setGround_elevation(row.getDouble("地面高程"));
+                            bp.setCommap_point_X(row.getDouble("综合图点号X坐标"));
+                            bp.setCommap_point_Y(row.getDouble("综合图点号Y坐标"));
+                            bp.setSpmap_point_X(row.getDouble("专业图点号X坐标")==null?0.0:row.getDouble("专业图点号X坐标"));
+                            bp.setSpmap_point_Y(row.getDouble("专业图点号Y坐标")==null?0.0:row.getDouble("专业图点号Y坐标"));
+                            bp.setPoint_code(row.getString("点要素编码"));
+                            bp.setRoad_name(row.getString("道路名称"));
+                            bp.setPicture_number(row.getString("图幅号"));
+                            bp.setHelper_type(row.getString("辅助类型"));
+                            bp.setDelete_mark(row.getString("删除标记"));
+                            bp.setManhole_material(row.getString("井盖材质"));
+                            bp.setManhole_size(row.getString("井盖尺寸"));
+                            bp.setWell_shape(row.getString("井盖形状"));
+                            bp.setWell_material(row.getString("井材质"));
+                            bp.setWell_size(row.getString("井尺寸"));
+                            bp.setUsed_status(row.getString("使用状态"));
+                            String ti = row.getString("管线类型");
+                            String type = "";
+                            if(ti == null){
+                                String pre = s.replace("_POINT","");
+                                ti = TypeItemUtil.getType(pre);
+                                type = ti_t_Util.getType(ti);
+                            }
+                            bp.setPipeline_type(type);
+                            bp.setManhole_type(row.getString("井盖类型"));
+                            bp.setEccentric_well_loc(row.getString("偏心井位"));
+                            bp.setEXPNO(row.getString("EXPNO"));
+                            bp.setBeizhu(row.getString("备注"));
+                            bp.setOperator_library(row.getString("操作库"));
+                            bp.setBottom_hole_depth(row.getFloat("井底深")==null?0.0f:row.getFloat("井底深"));
+                            bp.setPipetype(ti);
+                            bps.add(bp);
+                        }
+                    }
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            return bps;
+        } else {
+            Toast.makeText(context, "选择的文件格式不正确！", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
+
+    static List<BmLine> Mdb2Bls(Intent data, Context context){
+        Uri uri = data.getData();
+        List<BmLine> bls = new ArrayList<>();
+        String path;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
+            path = getPath(context, uri);
+            //Toast.makeText(this, path, Toast.LENGTH_SHORT).show();
+        } else {//4.4以下下系统调用方法
+            path = getRealPathFromURI(uri,context);
+        }
+        File file = new File(path);
+        if (file.getName().endsWith("mdb") || file.getName().endsWith("MDB")) {
+            try {
+                im_db = DatabaseBuilder.open(file);
+                for (String s : im_db.getTableNames()) {
+                    System.out.println(s);
+                    Table table = im_db.getTable(s);
+                    //判断是点表还是线表
+                    if (s.endsWith("LINE")) {
+                        BmLine bl;
+                        for (Row row : table) {
+                            bl = new BmLine();
+                            bl.setLine_code(row.getString("线要素编码"));
+                            bl.setStart_point(row.getString("起点点号"));
+                            bl.setConn_direction(row.getString("连接方向"));
+                            bl.setStart_depth(row.getFloat("起点埋深")== null?0.0f:row.getFloat("起点埋深"));
+                            bl.setEnd_depth(row.getFloat("终点埋深") == null?0.0f:row.getFloat("终点埋深"));
+                            bl.setBurial_type(row.getString("埋设类型"));
+                            bl.setMaterial(row.getString("材质"));
+                            bl.setPipe_diameter(row.getString("管径"));
+                            bl.setFlow_direction(row.getString("流向"));
+                            bl.setVoltage_pressure(row.getString("电压压力"));
+                            bl.setCable_count(row.getString("电缆条数"));
+                            bl.setHole_count(row.getString("总孔数"));
+                            bl.setAllot_holecount(row.getString("分配孔数"));
+                            bl.setConstruction_year(row.getString("建设年代"));
+                            bl.setLnumber(row.getString("LNUMBER"));
+                            bl.setLinetype(row.getString("线型"));
+                            bl.setSp_ann_content(row.getString("专业注记内容"));
+                            bl.setSp_ann_X(row.getDouble("专业注记X坐标")==null?0.0:row.getDouble("专业注记X坐标"));
+                            bl.setSp_ann_Y(row.getDouble("专业注记Y坐标")==null?0.0:row.getDouble("专业注记Y坐标"));
+                            bl.setSp_ann_angle(row.getFloat("专业注记角度")==null?0.0f:row.getFloat("专业注记角度"));
+                            bl.setCom_ann_content(row.getString("综合注记内容"));
+                            bl.setCom_ann_X(row.getDouble("综合注记X坐标")==null?0.0:row.getDouble("综合注记X坐标"));
+                            bl.setCom_ann_Y(row.getDouble("综合注记Y坐标")==null?0.0:row.getDouble("综合注记Y坐标"));
+                            bl.setCom_ann_angle(row.getFloat("综合注记角度")==null?0.0f:row.getFloat("综合注记角度"));
+                            bl.setHelper_type(row.getString("辅助类型"));
+                            bl.setUsed_holecount(row.getString("已用孔数"));
+                            bl.setDelete_mark(row.getString("删除标记"));
+                            bl.setCasing_size(row.getString("套管尺寸"));
+                            bl.setStart_pipe_topele(row.getDouble("起点管顶高程")==null?0.0:row.getDouble("起点管顶高程"));
+                            bl.setEnd_pipe_topele(row.getDouble("终点管顶高程")==null?0.0:row.getDouble("终点管顶高程"));
+                            bl.setPipeline_ower_code(row.getString("管线权属代码"));
+                            bl.setBeizhu(row.getString("备注"));
+                            bl.setOperator_library(row.getString("操作库"));
+                            bl.setRoad_name(row.getString("道路名称"));
+                            bl.setGroove_conncode(row.getString("管沟连接码"));
+
+                            //根据表名获取管线类型
+                            String pre = s.replace("_LINE","");
+                            String type = TypeItemUtil.getType(pre);
+                            Log.i("设置type值",type);
+                            bl.setPipetype(type);
+
+                            bls.add(bl);
+                        }
+                    }
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            return bls;
+        } else {
+            Toast.makeText(context, "选择的文件格式不正确！", Toast.LENGTH_SHORT).show();
+            return null;
         }
     }
 

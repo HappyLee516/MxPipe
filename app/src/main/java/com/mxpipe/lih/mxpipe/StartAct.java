@@ -90,7 +90,8 @@ import static com.mxpipe.lih.mxpipe.DaochuUtil.addBp2mdb;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.addPoint;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.lm;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
-import static com.mxpipe.lih.mxpipe.DaoruUtil.Daoru;
+import static com.mxpipe.lih.mxpipe.DaoruUtil.Mdb2Bls;
+import static com.mxpipe.lih.mxpipe.DaoruUtil.Mdb2Bps;
 import static com.mxpipe.lih.mxpipe.ReadDatUtil.ReadDat;
 import static org.cocos2dx.lib.Cocos2dxHelper.getActivity;
 
@@ -103,7 +104,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
 
     boolean enable = false;//是否可编辑
 
-    static long   selected          = 0;
+    static long selected = 0;
     String s_code, mark_name = "1.dwg";
 
     //连线数组：ps[0]为起点id，ps[1]为终点id，ps[2]为连接方式:1-点连点 2-方向线连方向线 3-点连方向线 4-方向线连点
@@ -117,7 +118,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
 
     Box<PipeNo>       pipeNoBox = null;
     Box<CodeNumber>   codeNumberBox;
-    SharedPreferences sp = null;
+    SharedPreferences sp        = null;
 
     //管点弹窗控件
     Spinner type, type_item, tezheng, fushuwu, jgxzh, jgczh, jgzht, jczh, state, data;
@@ -138,16 +139,26 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     LinearLayout dl_ll_ts, dl_ll_ks, dl_ll_yl;
 
     //mdb库
-    static Database db;
+    static Database db, im_db;
 
     HashMap<Integer, Boolean> checkedMap;
 
     static BmPoint bmPoint = null;//管点实体类实例-封装属性，传递值
     static BmLine  bmLine  = null;//管线实体类实例-封装属性，传递值
 
+    //若发生崩溃导致图上数据丢失，则导入图纸对应的mdb数据重新生成一次
+    List<BmPoint> bps = null;//Mdb库中的所有点数据封装到Bmpoint对象后的集合，即所有点数据封装
+    List<BmLine>  bls = null;//Mdb库中的所有线数据封装到Bmline对象后的集合，即所有线数据封装
+
     static long pid;//选中查看/修改管点时传递的点id
 
     McGePoint3d startp, endp;//线起点、终点
+
+    //线的起点、终点的X、Y
+    double sx = 0.0d;
+    double sy = 0.0d;
+    double ex = 0.0d;
+    double ey = 0.0d;
 
     private MyHandler mMyHandler = new MyHandler(this);
 
@@ -165,10 +176,10 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         public void handleMessage(Message msg) {
             Activity activity = mActivity.get();
             if (activity != null) {
-                if(msg.what == 1 || msg.what == 2) {//查看修改管点时修改库
+                if (msg.what == 1 || msg.what == 2) {//查看修改管点时修改库
                     //点数据更新--先删后加
                     try {
-                        if(db == null) {
+                        if (db == null) {
                             db = DatabaseBuilder.open(new File(mdbName()));
                         }
                         String ti = bmPoint.getPipetype();
@@ -182,21 +193,21 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else if(msg.what == 3){//移动管点时修改库中坐标
+                } else if (msg.what == 3) {//移动管点时修改库中坐标
                     try {
-                        if(db == null) {
+                        if (db == null) {
                             db = DatabaseBuilder.open(new File(mdbName()));
                         }
-                        String unicode = MxFunction.getxDataString(selected,"unicode");
-                        String ti = MxFunction.getxDataString(selected,"type_item");
-                        String x = MxFunction.getxDataString(selected,"x");
-                        String y = MxFunction.getxDataString(selected,"y");
+                        String unicode = MxFunction.getxDataString(selected, "unicode");
+                        String ti = MxFunction.getxDataString(selected, "type_item");
+                        String x = MxFunction.getxDataString(selected, "x");
+                        String y = MxFunction.getxDataString(selected, "y");
                         if (pm.containsKey(ti)) {
                             Table ta = db.getTable(pm.get(ti));
                             Row row = CursorBuilder.findRow(ta, Collections.singletonMap("物探点号", unicode));
                             Log.i("移动-找到的row", row.toString());
-                            row.put("X",y);
-                            row.put("Y",x);
+                            row.put("X", y);
+                            row.put("Y", x);
                             ta.updateRow(row);
                         }
                     } catch (IOException e) {
@@ -493,6 +504,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         return 0;
     }
 
+    //管点操作弹出框
     private void op_point(final long id) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.op_point, null);
         pop = new Popup(v, WRAP_CONTENT,
@@ -505,7 +517,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         pop.setOutsideTouchable(true);
-        pop.setFocusable(false);
+        pop.setFocusable(true);
         pop.setIsdismiss(true);
         pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
@@ -585,6 +597,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         });
     }
 
+    //管线操作弹出框
     private void op_line(final long id) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.op_line, null);
         pop = new Popup(v, WRAP_CONTENT, WRAP_CONTENT);
@@ -596,7 +609,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         pop.setOutsideTouchable(true);
-        pop.setFocusable(false);
+        pop.setFocusable(true);
         pop.setIsdismiss(true);
         pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
@@ -660,6 +673,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         });
     }
 
+    //方向线操作弹出框
     private void op_directionline(final long id) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.op_line, null);
         pop = new Popup(v, WRAP_CONTENT, WRAP_CONTENT);
@@ -725,6 +739,13 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         });
     }
 
+    /*
+     *管点信息编辑/查看修改弹出框
+     * @param flag 弹窗标识：1-管点 2-查看 3-展点编辑
+     * @param x x坐标
+     * @param y y坐标
+     * @param z z坐标
+     */
     private void point_pop(final int flag, double dx, double dy, final double dz) {
         if (flag == 1 || flag == 3) {
             pview = LayoutInflater.from(getActivity()).inflate(R.layout.newpoint, null);
@@ -844,7 +865,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     String pno = sp.getString("pno", null);
                     String area = sp.getString("area", null);
 
-                    if(pipeNoBox == null){
+                    if (pipeNoBox == null) {
                         pipeNoBox = MyApplication.getApplication().getBoxStore().boxFor(PipeNo.class);
                     }
                     String unicode = null;
@@ -938,11 +959,12 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                         }
                     }
 
+                    String code = MxFunction.getxDataString(selected,"code");
                     String unicode = MxFunction.getxDataString(selected, "unicode");
                     x = Double.parseDouble(MxFunction.getxDataString(selected, "x"));
                     y = Double.parseDouble(MxFunction.getxDataString(selected, "y"));
                     bmPoint = new BmPoint();
-                    bmPoint.setMap_dot(code.getText().toString()); //图上点号
+                    bmPoint.setMap_dot(code); //图上点号
                     bmPoint.setExploration_dot(unicode);//物探点号
                     bmPoint.setFeature(tezheng.getSelectedItem().toString().equals("请选择") ? " " : tezheng.getSelectedItem().toString());
                     bmPoint.setAppendages(fushuwu.getSelectedItem().toString().equals("请选择") ? " " : fushuwu.getSelectedItem().toString());
@@ -995,11 +1017,13 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     String n_item = fushuwu.getSelectedItem().toString();
 
                     if (n_type.equals(o_type) || n_item.equals(o_item)) {
+                        Log.i("修改，执行113","113");
                         pid = selected;
                         bmpoint2xdata(bmPoint, selected);
                         MxFunction.doCommand(113);
                         mMyHandler.sendEmptyMessage(1);
                     } else {
+                        Log.i("修改，执行112","112");
                         MxFunction.doCommand(112);
                     }
 
@@ -1144,7 +1168,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         getWindow().setAttributes(lp);
 
         ppw.setOutsideTouchable(false);
-        ppw.setFocusable(false);
+        ppw.setFocusable(true);
         ppw.setIsdismiss(false);
         ppw.showAtLocation(getWindow().getDecorView(), Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 
@@ -1198,7 +1222,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
             return;
         }
 
-        String caizhiss[], mshss[],yaliss[] = null;
+        String caizhiss[], mshss[], yaliss[] = null;
         if (type.equals("给水")) {
             caizhiss = getResources().getStringArray(R.array.caizhi_js);
             mshss = getResources().getStringArray(R.array.mshway_js);
@@ -1342,18 +1366,18 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 set(s_mshway, mshss, msh);
                 set(s_caizhi, caizhiss, " ".equals(caizhi) ? "请选择" : caizhi);
 
-                if(ll_guanjing2.getVisibility() == View.VISIBLE){
-                    gao.setText(MxFunction.getxDataString(ps[0],"gao"));
+                if (ll_guanjing2.getVisibility() == View.VISIBLE) {
+                    gao.setText(MxFunction.getxDataString(ps[0], "gao"));
                 }
-                if(ll_ts.getVisibility() == View.VISIBLE){
-                    num.setText(MxFunction.getxDataString(ps[0],"tsh"));
+                if (ll_ts.getVisibility() == View.VISIBLE) {
+                    num.setText(MxFunction.getxDataString(ps[0], "tsh"));
                 }
-                if(ll_ks.getVisibility() == View.VISIBLE){
-                    allnum.setText(MxFunction.getxDataString(ps[0],"zksh"));
-                    usednum.setText(MxFunction.getxDataString(ps[0],"yyksh"));
+                if (ll_ks.getVisibility() == View.VISIBLE) {
+                    allnum.setText(MxFunction.getxDataString(ps[0], "zksh"));
+                    usednum.setText(MxFunction.getxDataString(ps[0], "yyksh"));
                 }
-                if(ll_yali.getVisibility() == View.VISIBLE){
-                    set(yali,yaliss,MxFunction.getxDataString(ps[0],"yl"));
+                if (ll_yali.getVisibility() == View.VISIBLE) {
+                    set(yali, yaliss, MxFunction.getxDataString(ps[0], "yl"));
                 }
             } else if (ps[2] == 3) {//点连方向线
                 String sscode = MxFunction.getxDataString(ps[0], "code");
@@ -1372,18 +1396,18 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 set(s_mshway, mshss, msh);
                 set(s_caizhi, caizhiss, " ".equals(caizhi) ? "请选择" : caizhi);
 
-                if(ll_guanjing2.getVisibility() == View.VISIBLE){
-                    gao.setText(MxFunction.getxDataString(ps[1],"gao"));
+                if (ll_guanjing2.getVisibility() == View.VISIBLE) {
+                    gao.setText(MxFunction.getxDataString(ps[1], "gao"));
                 }
-                if(ll_ts.getVisibility() == View.VISIBLE){
-                    num.setText(MxFunction.getxDataString(ps[1],"tsh"));
+                if (ll_ts.getVisibility() == View.VISIBLE) {
+                    num.setText(MxFunction.getxDataString(ps[1], "tsh"));
                 }
-                if(ll_ks.getVisibility() == View.VISIBLE){
-                    allnum.setText(MxFunction.getxDataString(ps[1],"zksh"));
-                    usednum.setText(MxFunction.getxDataString(ps[1],"yyksh"));
+                if (ll_ks.getVisibility() == View.VISIBLE) {
+                    allnum.setText(MxFunction.getxDataString(ps[1], "zksh"));
+                    usednum.setText(MxFunction.getxDataString(ps[1], "yyksh"));
                 }
-                if(ll_yali.getVisibility() == View.VISIBLE){
-                    set(yali,yaliss,MxFunction.getxDataString(ps[1],"yl"));
+                if (ll_yali.getVisibility() == View.VISIBLE) {
+                    set(yali, yaliss, MxFunction.getxDataString(ps[1], "yl"));
                 }
             } else if (ps[2] == 4) {//方向线连点
                 String sscode = MxFunction.getxDataString(ps[0], "point_code");
@@ -1402,18 +1426,18 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 set(s_mshway, mshss, msh);
                 set(s_caizhi, caizhiss, " ".equals(caizhi) ? "请选择" : caizhi);
 
-                if(ll_guanjing2.getVisibility() == View.VISIBLE){
-                    gao.setText(MxFunction.getxDataString(ps[0],"gao"));
+                if (ll_guanjing2.getVisibility() == View.VISIBLE) {
+                    gao.setText(MxFunction.getxDataString(ps[0], "gao"));
                 }
-                if(ll_ts.getVisibility() == View.VISIBLE){
-                    num.setText(MxFunction.getxDataString(ps[0],"tsh"));
+                if (ll_ts.getVisibility() == View.VISIBLE) {
+                    num.setText(MxFunction.getxDataString(ps[0], "tsh"));
                 }
-                if(ll_ks.getVisibility() == View.VISIBLE){
-                    allnum.setText(MxFunction.getxDataString(ps[0],"zksh"));
-                    usednum.setText(MxFunction.getxDataString(ps[0],"yyksh"));
+                if (ll_ks.getVisibility() == View.VISIBLE) {
+                    allnum.setText(MxFunction.getxDataString(ps[0], "zksh"));
+                    usednum.setText(MxFunction.getxDataString(ps[0], "yyksh"));
                 }
-                if(ll_yali.getVisibility() == View.VISIBLE){
-                    set(yali,yaliss,MxFunction.getxDataString(ps[0],"yl"));
+                if (ll_yali.getVisibility() == View.VISIBLE) {
+                    set(yali, yaliss, MxFunction.getxDataString(ps[0], "yl"));
                 }
             }
 
@@ -1675,6 +1699,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         yali.setOnItemSelectedListener(this);
     }
 
+    //将管线信息展示出来
     private void set_Linfo(long id, String type) {
         String sscode = MxFunction.getxDataString(id, "scode");
         String secode = MxFunction.getxDataString(id, "ecode");
@@ -1982,47 +2007,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 McDbLine dl = new McDbLine(lid);
                 dl.setDrawOrder(5);
 
-                MxFunction.setxDataString(lid, "scode", bmLine.getTushangqidian());
-                MxFunction.setxDataString(lid, "ecode", bmLine.getTushangzhongdian());
-
-                //记录线端点的物探点号
-                MxFunction.setxDataString(lid, "qd_unicode", bmLine.getStart_point());
-                MxFunction.setxDataString(lid, "zhd_unicode", bmLine.getConn_direction());
-
-                MxFunction.setxDataString(lid, "type", bmLine.getPipetype());
-                MxFunction.setxDataString(lid, "qdmsh", String.valueOf(bmLine.getStart_depth()));
-                MxFunction.setxDataString(lid, "zhdmsh", String.valueOf(bmLine.getEnd_depth()));
-                MxFunction.setxDataString(lid, "mshfsh", bmLine.getBurial_type());
-                MxFunction.setxDataString(lid, "gj1", bmLine.getPipe_diameter());
-                if (ll_guanjing2.getVisibility() == View.VISIBLE) {
-                    MxFunction.setxDataString(lid, "gj2", TextUtils.isEmpty(gao.getText()) ? " " : gao.getText().toString());
-                } else {
-                    MxFunction.setxDataString(lid, "gj2", " ");
-                }
-                MxFunction.setxDataString(lid, "dlmch", bmLine.getRoad_name());
-                MxFunction.setxDataString(lid, "czh", bmLine.getMaterial());
-                if (ll_direc.getVisibility() == View.VISIBLE) {
-                    MxFunction.setxDataString(lid, "lx", bmLine.getFlow_direction());
-                } else {
-                    MxFunction.setxDataString(lid, "lx", " ");
-                }
-                if (ll_ts.getVisibility() == View.VISIBLE) {
-                    MxFunction.setxDataString(lid, "tsh", bmLine.getCable_count());
-                } else {
-                    MxFunction.setxDataString(lid, "tsh", " ");
-                }
-                if (ll_ks.getVisibility() == View.VISIBLE) {
-                    MxFunction.setxDataString(lid, "zksh", bmLine.getHole_count());
-                    MxFunction.setxDataString(lid, "yyksh", bmLine.getAllot_holecount());
-                } else {
-                    MxFunction.setxDataString(lid, "zksh", " ");
-                    MxFunction.setxDataString(lid, "yyksh", " ");
-                }
-                if (ll_yali.getVisibility() == View.VISIBLE) {
-                    MxFunction.setxDataString(lid, "yl", bmLine.getVoltage_pressure());
-                } else {
-                    MxFunction.setxDataString(lid, "yl", " ");
-                }
+                Bmline2xdata(bmLine, lid);
 
                 MxFunction.writeFile(MxFunction.currentFileName());//保存文件-保存数据
 
@@ -2631,6 +2616,160 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 intent1.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent1, 2);
                 break;
+            case 58://根据bps、bls成图
+                for (BmPoint bp : bps) {//遍历bps，生成点
+                    Log.i("遍历bps", bps.size() + "");
+                    mark_name = "1.dwg";
+                    Mark_Util mu = new Mark_Util();
+                    String dalei = bp.getPipeline_type();
+                    String xiaolei = bp.getPipetype();
+                    Log.i("大类：小类",dalei + ":" + xiaolei);
+                    if (" ".equals(bp.getFeature()) || "".equals(bp.getFeature()) || bp.getFeature() == null) {
+                        if (mu.getMark(2, bp.getAppendages(), dalei, xiaolei) != null)
+                            mark_name = mu.getMark(2, bp.getAppendages(), dalei, xiaolei);
+                        else
+                            mark_name = "1.dwg";
+                    } else if (" ".equals(bp.getAppendages()) || "".equals(bp.getAppendages()) || bp.getAppendages() == null) {
+                        if (mu.getMark(1, bp.getFeature(), dalei, xiaolei) != null)
+                            mark_name = mu.getMark(1, bp.getFeature(), dalei, xiaolei);
+                        else
+                            mark_name = "1.dwg";
+                    } else {
+                        mark_name = "1.dwg";
+                    }
+                    Log.i("符号name",mark_name);
+                    copyAssetAndWrite(mark_name);
+                    File block2 = new File(getCacheDir(), mark_name);
+                    File af2 = block2.getAbsoluteFile();
+                    String s3 = af2.getPath();
+
+                    long[] color = StartAct.getColor(bp.getPipeline_type());
+                    MxLibDraw.setDrawColor(color);
+
+                    String pre = TypeItemUtil.getPre(bp.getPipeline_type());
+                    MxLibDraw.setLayerName(pre + "POINT");
+                    McDbLayerTable mcDbLayerTable = MxFunction.getCurrentDatabase().getLayerTable();
+                    if (!mcDbLayerTable.has(pre + "POINT")) {
+                        MxLibDraw.addLayer(pre + "POINT");
+                    }
+                    MxLibDraw.setLineType("point");
+                    MxLibDraw.insertBlock(s3, bp.getExploration_dot());
+                    long bid58 = 0;
+                    if(bp.getMap_dot() == null) {
+                        bid58 = MxLibDraw.drawBlockReference(bp.getX(), bp.getY(), bp.getExploration_dot(), 0.5, 0);
+                    }else {
+                        bid58 = MxLibDraw.drawBlockReference(bp.getX(), bp.getY(), bp.getMap_dot(), 0.5, 0);
+                    }
+                    if (bid58 != 0) {
+                        McDbBlockReference blkRef58 = (McDbBlockReference) MxFunction.objectIdToObject(bid58);
+                        McGePoint3d pos = blkRef58.position();
+                        pos.z = bp.getGround_elevation();
+                        blkRef58.setPosition(pos);
+                        blkRef58.setDrawOrder(9);
+                    }
+
+                    MxLibDraw.setLayerName(pre + "TEXT");
+                    MxLibDraw.setLineType("text");
+                    long tid = 0;
+                    if(bp.getMap_dot() == null) {
+                        tid = MxLibDraw.drawText(bp.getX(), bp.getY() + 0.4, 1, bp.getExploration_dot());
+                    }else {
+                        tid = MxLibDraw.drawText(bp.getX(), bp.getY() + 0.4, 1, bp.getMap_dot());
+                    }
+                    McDbText text = new McDbText(tid);
+                    text.setDrawOrder(1);
+
+                    bmpoint2xdata(bp, bid58);
+                }
+
+                for (BmLine bl : bls) {//遍历bls，生成线
+                    Log.i("遍历bls", bls.size() + "");
+                    String type = bl.getPipetype();
+                    String pr = TypeItemUtil.getPre(type);
+                    String dalei = ti_t_Util.getType(type);
+                    if (null == type)
+                        continue;
+                    try {
+                        Log.i("类别", type);
+                        Table ptable = im_db.getTable(pm.get(type));
+                        for (Row r : ptable) {
+                            if (r.getString("物探点号").equals(bl.getStart_point())) {
+                                sx = r.getDouble("Y");
+                                sy = r.getDouble("X");
+                                Log.i("xy", sx + "," + sy);
+                                bl.setTushangqidian(r.getString("图上点号"));
+                            }
+                            if (r.getString("物探点号").equals(bl.getConn_direction())) {
+                                ex = Double.parseDouble(String.valueOf(r.get("Y")));
+                                ey = Double.parseDouble(String.valueOf(r.get("X")));
+                                Log.i("xy", ex + "," + ey);
+                                bl.setTushangzhongdian(r.getString("图上点号"));
+                            }
+                        }
+                        Log.i("sx" + "," + "sy" + "--" + "ex" + "," + "ey", sx + "," + sy + "--" + ex + "," + ey);
+                        if (sx != 0.0 && sy != 0.0 && ex != 0.0 && ey != 0.0) {
+                            McDbLayerTable mcDbLayerTable = MxFunction.getCurrentDatabase().getLayerTable();
+                            if (!mcDbLayerTable.has(pr + "LINE")) {
+                                MxLibDraw.addLayer(pr + "LINE");
+                            }
+                            MxLibDraw.setLayerName(pr + "LINE");
+                            MxLibDraw.setDrawColor(StartAct.getColor(dalei));
+                            MxLibDraw.setLineType("line");
+
+                            long lid58 = MxLibDraw.drawLine(sx, sy, ex, ey);
+
+                            Bmline2xdata(bl, lid58);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                break;
+            case 59://删除丢失数据的点和线，然后删除没有相关点的标注
+                MrxDbgSelSet selSet59 = new MrxDbgSelSet();
+                selSet59.allSelect();
+                Log.i("对象数量", selSet59.size() + "");
+                for (int i = 0; i < selSet59.size(); i++) {
+                    long id = selSet59.at(i);
+                    McDbEntity entity = new McDbEntity(id);
+                    String layer = entity.layerName();
+                    Log.i("对象图层名", layer);
+                    if (layer.endsWith("POINT")) {//删除无效点
+                        String code = MxFunction.getxDataString(id, "code");
+                        if (code == null || code.isEmpty()) {
+                            MxFunction.deleteObject(id);
+                        }
+                    } else if (layer.equals("DIRECTIONLINE")) {//删除无效方向线
+                        String code = MxFunction.getxDataString(id, "point_code");
+                        if (code == null || code.isEmpty()) {
+                            MxFunction.deleteObject(id);
+                        }
+                    } else if (layer.endsWith("LINE")) {//删除无效线
+                        String code = MxFunction.getxDataString(id, "scode");
+                        if (code == null || code.isEmpty()) {
+                            MxFunction.deleteObject(id);
+                        }
+                    } else if (layer.endsWith("TEXT")) {//删除无效标注
+                        McDbText text = new McDbText(id);
+                        McGePoint3d po = text.position();
+
+                        MrxDbgSelSet ss = new MrxDbgSelSet();
+                        McGePoint3d pt1 = new McGePoint3d(po.x, po.y - 0.42, po.z);
+                        McGePoint3d pt2 = new McGePoint3d(po.x, po.y - 0.38, po.z);
+                        ss.crossingSelect(pt1, pt2);
+                        if (ss.size() == 0) {
+                            MxFunction.deleteObject(id);
+                        } else if (ss.size() == 1) {
+                            McDbEntity entity1 = new McDbEntity(ss.at(0));
+                            if (!entity1.layerName().endsWith("POINT")) {
+                                MxFunction.deleteObject(id);
+                            }
+                        }
+                    }
+                }
+
+                break;
             case 99://测试
 
                 break;
@@ -2640,17 +2779,24 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     @Override
     public void onKeyReleased(int iKeyCode) {
         if (iKeyCode == 6) {
-                MxFunction.sendStringToExecute("Mx_StartPage");
+            MxFunction.sendStringToExecute("Mx_StartPage");
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1)
-                Daoru(data, StartAct.this);
+            if (requestCode == 1) {
+                //                Daoru(data, StartAct.this);
+                bps = Mdb2Bps(data, StartAct.this);
+                bls = Mdb2Bls(data, StartAct.this);
+                if (bls != null && bps != null) {
+                    MxFunction.doCommand(58);
+                }
+            }
             if (requestCode == 2)
                 ReadDat(data, StartAct.this);
+
         }
     }
 
@@ -2682,7 +2828,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                                 Toast.makeText(getApplication(), "已选择起点：" + sp, Toast.LENGTH_SHORT).show();
                             }
                         });
-                        //                        MxFunction.delSelect(lId);
+                        MxFunction.delSelect(lId);
                     } else {
                         McDbEntity ent0 = new McDbEntity(ps[0]);
                         ps[1] = lId;
@@ -2828,6 +2974,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                                 Toast.makeText(getApplication(), "已选择起点：" + sp, Toast.LENGTH_SHORT).show();
                             }
                         });
+                        MxFunction.delSelect(lId);
                     } else {
                         ps[1] = lId;
                         McDbEntity ent0 = new McDbEntity(ps[0]);
@@ -3035,6 +3182,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         return true;
     }
 
+    //验证权限
     public static boolean hasPermission(Context context, String permission) {
         if (Build.VERSION.SDK_INT >= M) {
             if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
@@ -3044,6 +3192,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         return true;
     }
 
+    //申请权限
     public static void requestPermissions(Activity activity, String[] permissions, int requestCode) {
         if (Build.VERSION.SDK_INT >= M) {
             activity.requestPermissions(permissions, requestCode);
@@ -3181,7 +3330,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     }
                     type.setEnabled(false);
                     type_item.setEnabled(false);
-//                    ig = 0;
+                    //                    ig = 0;
                 } else {
                     set(type_item, a_ti, last[1]);
                     fushuwu.setSelection(1);
@@ -3209,9 +3358,9 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                         code.setText(pre + no);
                     }
                 }
-//                if (ig == 0) {
-//                    ig = 1;
-//                }
+                //                if (ig == 0) {
+                //                    ig = 1;
+                //                }
                 break;
             case R.id.s_jczh:
                 break;
@@ -3229,12 +3378,10 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 String tp = type.getSelectedItem().toString();
                 String it = type_item.getSelectedItem().toString();
                 Mark_Util mu = new Mark_Util();
-                mu.p_type = tp;
-                mu.p_item = it;
                 Log.i("选择的特征······", tezheng.getSelectedItem().toString());
                 if (tezheng.getSelectedItemPosition() > 0) {
                     fushuwu.setSelection(0);
-                    mark_name = mu.getMark(1, tezheng.getSelectedItem().toString());
+                    mark_name = mu.getMark(1, tezheng.getSelectedItem().toString(), tp, it);
                 }
                 break;
             case R.id.s_fushuwu:
@@ -3249,11 +3396,9 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 String tp1 = type.getSelectedItem().toString();
                 String it1 = type_item.getSelectedItem().toString();
                 Mark_Util mu1 = new Mark_Util();
-                mu1.p_type = tp1;
-                mu1.p_item = it1;
                 if (fushuwu.getSelectedItemPosition() > 0) {
                     tezheng.setSelection(0);
-                    mark_name = mu1.getMark(2, fushuwu.getSelectedItem().toString());
+                    mark_name = mu1.getMark(2, fushuwu.getSelectedItem().toString(), tp1, it1);
                 }
                 break;
             case R.id.s_mshway:
@@ -3288,6 +3433,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         }
     }
 
+    //根据大类获取颜色,参数type:大类
     public static long[] getColor(String type) {
         switch (type) {
             case "给水":
@@ -3385,7 +3531,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         return true;
     }
 
-    //新建管种
+    //新建管种:根据相应MDB文件中的表名判断是否已有每类管点/线表，没有的则可以选择是否新建
     void newPipe4mdb() {
         String name = MxFunction.currentFileName();
         if (name.endsWith(".mwg")) {
@@ -3553,8 +3699,8 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                                 .addColumn(new ColumnBuilder("专业注记Y坐标").setSQLType(Types.DOUBLE).setLength(15).toColumn())
                                 .addColumn(new ColumnBuilder("专业注记角度").setSQLType(Types.FLOAT).setLength(10).toColumn())
                                 .addColumn(new ColumnBuilder("综合注记内容").setSQLType(Types.NVARCHAR).setLength(100).toColumn())
-                                .addColumn(new ColumnBuilder("综合注记X坐标").setSQLType(Types.BIGINT).setLength(15).toColumn())
-                                .addColumn(new ColumnBuilder("综合注记Y坐标").setSQLType(Types.BIGINT).setLength(15).toColumn())
+                                .addColumn(new ColumnBuilder("综合注记X坐标").setSQLType(Types.DOUBLE).setLength(15).toColumn())
+                                .addColumn(new ColumnBuilder("综合注记Y坐标").setSQLType(Types.DOUBLE).setLength(15).toColumn())
                                 .addColumn(new ColumnBuilder("综合注记角度").setSQLType(Types.FLOAT).setLength(10).toColumn())
                                 .addColumn(new ColumnBuilder("辅助类型").setSQLType(Types.NVARCHAR).setLength(30).toColumn())
                                 .addColumn(new ColumnBuilder("已用孔数").setSQLType(Types.NVARCHAR).setLength(20).toColumn())
@@ -3732,8 +3878,8 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     }
 
     /*
-     另存为弹窗
-     文件名不能为空。另存路径为工作文件夹
+     *另存为弹窗
+     *文件名不能为空。另存路径为工作文件夹
      */
     void SaveAs() {
         View v = LayoutInflater.from(getApplication()).inflate(R.layout.saveas, null);
@@ -4086,9 +4232,9 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     }
 
     /*获得管点相关埋深
-      @param falg 标识：1-起点埋深 2-终点埋深
-      @param code 管点点号
-      @param type 管点类型
+     *@param falg 标识：1-起点埋深 2-终点埋深
+     *@param code 管点点号
+     *@param type 管点类型
      */
     String getDeep(int flag, String code, String type) {
         Log.i("getDeep", flag + "--" + code + "--" + type);
@@ -4157,28 +4303,59 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         MxFunction.setxDataString(bid, "type_item", bmPoint.getPipetype());
         MxFunction.setxDataString(bid, "tezheng", bmPoint.getFeature());
         MxFunction.setxDataString(bid, "fushuwu", bmPoint.getAppendages());
-        if (ll_jing.getVisibility() == View.VISIBLE) {
-            MxFunction.setxDataString(bid, "jdmsh", String.valueOf(bmPoint.getBottom_hole_depth()));
-            MxFunction.setxDataString(bid, "jgxzh", bmPoint.getWell_shape());
-            MxFunction.setxDataString(bid, "jgchc", bmPoint.getManhole_size());
-            MxFunction.setxDataString(bid, "jgczh", bmPoint.getManhole_material());
-            MxFunction.setxDataString(bid, "jgzht", bmPoint.getManhole_type());
-            MxFunction.setxDataString(bid, "jczh", bmPoint.getWell_material());
-            MxFunction.setxDataString(bid, "jchc", bmPoint.getWell_size());
-        } else {
-            MxFunction.setxDataString(bid, "jdmsh", " ");
-            MxFunction.setxDataString(bid, "jgxzh", " ");
-            MxFunction.setxDataString(bid, "jgchc", " ");
-            MxFunction.setxDataString(bid, "jgczh", " ");
-            MxFunction.setxDataString(bid, "jgzht", " ");
-            MxFunction.setxDataString(bid, "jczh", " ");
-            MxFunction.setxDataString(bid, "jchc", " ");
-        }
+
+        MxFunction.setxDataString(bid, "jdmsh", String.valueOf(bmPoint.getBottom_hole_depth()));
+        MxFunction.setxDataString(bid, "jgxzh", bmPoint.getWell_shape());
+        MxFunction.setxDataString(bid, "jgchc", bmPoint.getManhole_size());
+        MxFunction.setxDataString(bid, "jgczh", bmPoint.getManhole_material());
+        MxFunction.setxDataString(bid, "jgzht", bmPoint.getManhole_type());
+        MxFunction.setxDataString(bid, "jczh", bmPoint.getWell_material());
+        MxFunction.setxDataString(bid, "jchc", bmPoint.getWell_size());
+
         MxFunction.setxDataString(bid, "dmgch", String.valueOf(bmPoint.getGround_elevation()));
         MxFunction.setxDataString(bid, "shyzht", bmPoint.getUsed_status());
         MxFunction.setxDataString(bid, "shjly", bmPoint.getData_source());
         MxFunction.setxDataString(bid, "bzh", bmPoint.getBeizhu());
 
+    }
+
+    /*
+     *将线实体封装的属性信息保存至图中
+     * @param bl 线实体对象
+     * @param lid 图上线的ID
+     */
+    void Bmline2xdata(BmLine bl, long lid) {
+        MxFunction.setxDataString(lid, "scode", bl.getTushangqidian());
+        MxFunction.setxDataString(lid, "ecode", bl.getTushangzhongdian());
+        MxFunction.setxDataString(lid, "qd_unicode", bl.getStart_point());
+        MxFunction.setxDataString(lid, "zhd_unicode", bl.getConn_direction());
+        MxFunction.setxDataString(lid, "type", bl.getPipetype());
+        MxFunction.setxDataString(lid, "qdmsh", String.valueOf(bl.getStart_depth()));
+        MxFunction.setxDataString(lid, "zhdmsh", String.valueOf(bl.getEnd_depth()));
+        MxFunction.setxDataString(lid, "mshfsh", bl.getBurial_type());
+        String gj = bl.getPipe_diameter();
+        String gj1, gj2;
+        if (gj != null && gj.contains("X")) {
+            int x = gj.indexOf("X");
+            gj1 = gj.substring(0, x);
+            gj2 = gj.substring(x + 1);
+        } else if (gj != null && gj.contains("*")) {
+            int x = gj.indexOf("*");
+            gj1 = gj.substring(0, x);
+            gj2 = gj.substring(x + 1);
+        } else {
+            gj1 = gj;
+            gj2 = " ";
+        }
+        MxFunction.setxDataString(lid, "gj1", gj1);
+        MxFunction.setxDataString(lid, "gj2", gj2);
+        MxFunction.setxDataString(lid, "dlmch", bl.getRoad_name());
+        MxFunction.setxDataString(lid, "czh", bl.getMaterial());
+        MxFunction.setxDataString(lid, "lx", bl.getFlow_direction());
+        MxFunction.setxDataString(lid, "tsh", bl.getCable_count());
+        MxFunction.setxDataString(lid, "zksh", bl.getHole_count());
+        MxFunction.setxDataString(lid, "yyksh", bl.getUsed_holecount());
+        MxFunction.setxDataString(lid, "yl", bl.getVoltage_pressure());
     }
 
     @Override

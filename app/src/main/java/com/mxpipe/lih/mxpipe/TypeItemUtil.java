@@ -1,6 +1,7 @@
 package com.mxpipe.lih.mxpipe;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /*
  *Created by LiHuan at 10:51 on 2019/2/15
@@ -48,5 +49,15 @@ class TypeItemUtil {
     static String getPre(String type){
         return pmap.get(type);
     }
-    
+
+    static String getType(String pre){
+        String re = "";
+        Set<String> keys = pmap.keySet();
+        for (String key : keys) {
+            if(pre.equals(pmap.get(key))){
+                re = key;
+            }
+        }
+        return re;
+    }
 }

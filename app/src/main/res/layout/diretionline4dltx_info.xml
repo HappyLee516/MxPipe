@@ -426,6 +426,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/textview_bg"
                     android:padding="@dimen/dp_8"
+                    android:textColor="#000"
                     android:text="@string/cancel"
                     android:textAlignment="center"
                     android:textSize="@dimen/sp_16"/>
@@ -438,6 +439,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/textview_bg"
                     android:padding="@dimen/dp_8"
+                    android:textColor="#000"
                     android:text="@string/sure"
                     android:textAlignment="center"
                     android:textSize="@dimen/sp_16"/>

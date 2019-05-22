@@ -25,11 +25,11 @@ public class BmLine {
     private String sp_ann_content;//专业注记内容
     private double sp_ann_X;//专业注记X坐标
     private double sp_ann_Y;//专业注记Y坐标
-    private double sp_ann_angle;//专业注记角度
+    private float sp_ann_angle;//专业注记角度
     private String com_ann_content;//综合注记内容
     private double com_ann_X;//综合注记X坐标
     private double com_ann_Y;//综合注记Y坐标
-    private double com_ann_angle;//综合注记角度
+    private float com_ann_angle;//综合注记角度
     private String helper_type;//辅助类型
     private String used_holecount;//已用孔数
     private String delete_mark;//删除标记
@@ -41,6 +41,7 @@ public class BmLine {
     private String operator_library;//操作库
     private String road_name;//道路名称
     private String groove_conncode;//管沟连接码
+
     private String pipetype;//管线类型
 
     private String tushangqidian;//图上起点号
@@ -202,7 +203,7 @@ public class BmLine {
         return sp_ann_angle;
     }
 
-    public void setSp_ann_angle(double sp_ann_angle) {
+    public void setSp_ann_angle(float sp_ann_angle) {
         this.sp_ann_angle = sp_ann_angle;
     }
 
@@ -234,7 +235,7 @@ public class BmLine {
         return com_ann_angle;
     }
 
-    public void setCom_ann_angle(double com_ann_angle) {
+    public void setCom_ann_angle(float com_ann_angle) {
         this.com_ann_angle = com_ann_angle;
     }
 

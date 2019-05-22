@@ -12,7 +12,7 @@ package com.mxpipe.lih.mxpipe;
     private String appendages;//附属物
     private double x;
     private double y;
-    private int sign_rotation_angle;//符号旋转角
+    private float sign_rotation_angle;//符号旋转角
     private double ground_elevation;//地面高程
     private double commap_point_X;//综合图点号X坐标
     private double commap_point_Y;//综合图点号Y坐标
@@ -95,11 +95,11 @@ package com.mxpipe.lih.mxpipe;
         this.ground_elevation = ground_elevation;
     }
 
-     int getSign_rotation_angle() {
+     float getSign_rotation_angle() {
         return sign_rotation_angle;
     }
 
-     void setSign_rotation_angle(int sign_rotation_angle) {
+     void setSign_rotation_angle(float sign_rotation_angle) {
         this.sign_rotation_angle = sign_rotation_angle;
     }
 

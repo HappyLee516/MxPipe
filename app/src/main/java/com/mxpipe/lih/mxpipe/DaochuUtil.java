@@ -348,7 +348,7 @@ class DaochuUtil {
         String s_bzh = MxFunction.getxDataString(lId, "bzh");
         //创建点实体对象，插入数据
         BmPoint bp = new BmPoint();
-        bp.setMap_dot(""); //图上点号
+        bp.setMap_dot(code); //图上点号
         bp.setExploration_dot(unicode);//物探点号
         bp.setFeature(s_tezheng.equals(" ") ? "" : s_tezheng);
         bp.setAppendages(s_fushuwu.equals(" ") ? "" : s_fushuwu);
@@ -377,7 +377,7 @@ class DaochuUtil {
         bp.setEXPNO("");//EXPNO
         bp.setBeizhu(s_bzh);//备注
         bp.setOperator_library("");//操作库
-        if (" ".equals(s_jdmsh) || "".equals(s_jdmsh)) {   //井底深
+        if (" ".equals(s_jdmsh) || "".equals(s_jdmsh)) {//井底深
             bp.setBottom_hole_depth(0.0f);
         } else {
             bp.setBottom_hole_depth(Float.valueOf(s_jdmsh));
