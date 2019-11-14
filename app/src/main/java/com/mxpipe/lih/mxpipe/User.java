@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/*
+ *用户信息类，存储相关信息：区域编号、小组编号、个人编号以及导入偏好
+ */
 public class User extends AppCompatActivity {
 
     SharedPreferences sp = null;

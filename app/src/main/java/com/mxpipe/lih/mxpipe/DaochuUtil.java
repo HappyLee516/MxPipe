@@ -162,7 +162,7 @@ class DaochuUtil {
                     bp.setWell_material(s_jczh); // 井材质
                     bp.setWell_size(s_jchc);// 井尺寸
                     bp.setUsed_status(s_shyzht);//使用状态
-                    //                    bp.setPipeline_type(s_type);//管线类型-大类
+//                    bp.setPipeline_type(s_type);//管线类型-大类
                     bp.setManhole_type(s_jgzht);//井盖类型
                     bp.setEccentric_well_loc("");//偏心井位
                     bp.setEXPNO("");//EXPNO

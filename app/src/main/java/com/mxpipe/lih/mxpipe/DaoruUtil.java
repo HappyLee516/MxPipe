@@ -87,7 +87,7 @@ class DaoruUtil {
                                 }
                             }
                             String type = ti_t_Util.getType(type_item);
-                            MxLibDraw.setDrawColor(StartAct.getColor(type));
+                            MxLibDraw.setDrawColor(DataUtil.getMyColor(type));
                             String tzh = row.getString("特征");
                             String fshw = row.getString("附属物");
                             String jdmsh = String.valueOf(row.getFloat("井底深"));
@@ -125,7 +125,7 @@ class DaoruUtil {
                             File af = block.getAbsoluteFile();
                             String s1 = af.getPath();
 
-                            long[] color = StartAct.getColor(type);
+                            long[] color = DataUtil.getMyColor(type);
                             MxLibDraw.setDrawColor(color);
 
                             String pre = TypeItemUtil.getPre(type);
@@ -229,7 +229,7 @@ class DaoruUtil {
                                 }
                                 if(sx != 0.0 && sy != 0.0 && ex != 0.0 && ey!=0.0 ){
                                     MxLibDraw.setLayerName(pr + "LINE");
-                                    MxLibDraw.setDrawColor(StartAct.getColor(lt));
+                                    MxLibDraw.setDrawColor(DataUtil.getMyColor(lt));
                                     MxLibDraw.setLineType("line");
                                     long lid = MxLibDraw.drawLine(sx, sy, ex, ey);
                                     Log.i("写入线···","" + lid);
@@ -291,8 +291,8 @@ class DaoruUtil {
                             bp = new BmPoint();
                             bp.setMap_dot(row.getString("图上点号"));
                             bp.setExploration_dot(row.getString("物探点号"));
-                            bp.setFeature(row.getString("特征"));
-                            bp.setAppendages(row.getString("附属物"));
+                            bp.setFeature(row.getString("特征")==null?"":row.getString("特征"));
+                            bp.setAppendages(row.getString("附属物")==null?"":row.getString("附属物"));
                             bp.setX(row.getDouble("Y"));
                             bp.setY(row.getDouble("X"));
                             bp.setSign_rotation_angle(row.get("符号旋转角") == null ? 0.0f : row.getFloat("符号旋转角"));
@@ -317,6 +317,8 @@ class DaoruUtil {
                             if(ti == null){
                                 String pre = s.replace("_POINT","");
                                 ti = TypeItemUtil.getType(pre);
+                                type = ti_t_Util.getType(ti);
+                            }else {
                                 type = ti_t_Util.getType(ti);
                             }
                             bp.setPipeline_type(type);
@@ -380,19 +382,19 @@ class DaoruUtil {
                             bl.setLnumber(row.getString("LNUMBER"));
                             bl.setLinetype(row.getString("线型"));
                             bl.setSp_ann_content(row.getString("专业注记内容"));
-                            bl.setSp_ann_X(row.getDouble("专业注记X坐标")==null?0.0:row.getDouble("专业注记X坐标"));
-                            bl.setSp_ann_Y(row.getDouble("专业注记Y坐标")==null?0.0:row.getDouble("专业注记Y坐标"));
+                            bl.setSp_ann_X(row.getDouble("专业注记X坐标")==null?0.0d:row.getDouble("专业注记X坐标"));
+                            bl.setSp_ann_Y(row.getDouble("专业注记Y坐标")==null?0.0d:row.getDouble("专业注记Y坐标"));
                             bl.setSp_ann_angle(row.getFloat("专业注记角度")==null?0.0f:row.getFloat("专业注记角度"));
                             bl.setCom_ann_content(row.getString("综合注记内容"));
-                            bl.setCom_ann_X(row.getDouble("综合注记X坐标")==null?0.0:row.getDouble("综合注记X坐标"));
-                            bl.setCom_ann_Y(row.getDouble("综合注记Y坐标")==null?0.0:row.getDouble("综合注记Y坐标"));
+                            bl.setCom_ann_X(row.getDouble("综合注记X坐标")==null?0.0d:row.getDouble("综合注记X坐标"));
+                            bl.setCom_ann_Y(row.getDouble("综合注记Y坐标")==null?0.0d:row.getDouble("综合注记Y坐标"));
                             bl.setCom_ann_angle(row.getFloat("综合注记角度")==null?0.0f:row.getFloat("综合注记角度"));
                             bl.setHelper_type(row.getString("辅助类型"));
                             bl.setUsed_holecount(row.getString("已用孔数"));
                             bl.setDelete_mark(row.getString("删除标记"));
                             bl.setCasing_size(row.getString("套管尺寸"));
-                            bl.setStart_pipe_topele(row.getDouble("起点管顶高程")==null?0.0:row.getDouble("起点管顶高程"));
-                            bl.setEnd_pipe_topele(row.getDouble("终点管顶高程")==null?0.0:row.getDouble("终点管顶高程"));
+                            bl.setStart_pipe_topele(row.getDouble("起点管顶高程")==null?0.0d:row.getDouble("起点管顶高程"));
+                            bl.setEnd_pipe_topele(row.getDouble("终点管顶高程")==null?0.0d:row.getDouble("终点管顶高程"));
                             bl.setPipeline_ower_code(row.getString("管线权属代码"));
                             bl.setBeizhu(row.getString("备注"));
                             bl.setOperator_library(row.getString("操作库"));

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UploadAct">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#cecece"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_5"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:padding="@dimen/dp_8"
+            android:text="@string/upload"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="Back"
+            android:padding="@dimen/dp_5"
+            android:text="@string/back"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_16"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/dp_8">
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_16"
+            android:text="@string/chfile"/>
+
+        <Button
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_add"
+            android:background="@drawable/textview_bg"
+            android:text="@string/addfile"
+            android:onClick="Add"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:orientation="vertical"
+        android:id="@+id/ll_chosenfile">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:padding="@dimen/dp_8"
+            android:id="@+id/tv_file1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:padding="@dimen/dp_8"
+            android:id="@+id/tv_file2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/dp_8">
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="@string/up_name"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_16"/>
+
+        <EditText
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:background="@drawable/textview_bg"
+            android:layout_weight="2"
+            android:id="@+id/et_name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/dp_8">
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:text="@string/up_content"
+            android:textSize="@dimen/sp_16"/>
+
+        <EditText
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg"
+            android:layout_weight="2"
+            android:lines="5"
+            android:id="@+id/et_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_margin="@dimen/dp_30">
+
+        <Button
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/textview_bg"
+            android:padding="8dp"
+            android:id="@+id/btn_cancel"
+            android:textSize="@dimen/sp_16"
+            android:textAlignment="center"
+            android:onClick="Cancel"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="@string/cancel"/>
+
+        <Button
+            android:layout_width="@dimen/dp_0"
+            android:id="@+id/btn_go"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@drawable/textview_bg"
+            android:padding="8dp"
+            android:textSize="@dimen/sp_16"
+            android:onClick="Go"
+            android:text="@string/up_go"/>
+    </LinearLayout>
+
+</LinearLayout>

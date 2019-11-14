@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
-    <string name="app_name">BY管线</string>
+    <string name="app_name">外业采集系统</string>
+
     <string name="open">打开文件</string>
     <string name="point">管点信息</string>
 
@@ -73,19 +74,27 @@
 
     <string name="test">测试</string>
 
-    <string name="workinfo">作业信息</string>
+    <string name="workinfo">测区</string>
     <string name="unicode">物探点号信息</string>
     <string name="personal">个人喜好设置</string>
     <string name="team">小组编号</string>
     <string name="number">个人编号</string>
     <string name="area">区域编号</string>
 
-    <string name="like">dat导入偏好</string>
+    <string name="like">dat导入设置</string>
 
-    <string name="paper">打开图纸</string>
+    <string name="paper">图纸</string>
     <string name="oper">操作说明</string>
-    <string name="areas">区域划分</string>
-    <string name="numbers">编号详情</string>
+    <string name="areas">作业区域</string>
+    <string name="numbers">人员分组</string>
+    <string name="upload">文件上传</string>
+    <string name="identify">证件识别</string>
+
+    <string name="chfile">已选文件</string>
+    <string name="addfile">选择文件</string>
+    <string name="up_name">上传人</string>
+    <string name="up_content">描述</string>
+    <string name="up_go">上传</string>
 
     <string name="radius">请输入半径：</string>
     <string name="cancel">取消</string>
@@ -100,5 +109,15 @@
     <string name="removeall">#171</string>
 
     <string name="saveas">请输入目标文件名：</string>
+
+    <string name="ocrresult">识别结果</string>
+    <string name="name">姓名</string>
+    <string name="sex">性别</string>
+    <string name="birth">出生年月</string>
+    <string name="addr">地址</string>
+    <string name="no">身份证号</string>
+
+    <string name="map">地图</string>
+    <string name="route">导航</string>
 
 </resources>

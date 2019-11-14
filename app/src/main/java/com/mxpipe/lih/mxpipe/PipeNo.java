@@ -7,6 +7,7 @@ import io.objectbox.annotation.Id;
 
 /*
  *Created by LiHuan at 15:09 on 2019/2/14
+ * 管点号实体类，根据类别记录该类别点号。用于12位物探点号
  */
 
 @Entity

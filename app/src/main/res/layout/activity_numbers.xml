@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     tools:context=".Areas">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cecece"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <TextView
@@ -30,6 +31,7 @@
             android:padding="@dimen/dp_8"
             android:text="@string/numbers"
             android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/sp_20"/>
 
         <TextView
@@ -39,6 +41,7 @@
             android:onClick="Back"
             android:padding="@dimen/dp_5"
             android:text="@string/back"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
             android:textAlignment="center"
             android:textSize="@dimen/sp_16"/>
@@ -58,16 +61,17 @@
             android:layout_marginBottom="@dimen/dp_10"
             android:columnCount="3"
             android:orientation="horizontal"
-            android:rowCount="28">
+            android:rowCount="12">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_row="1"
                 android:layout_columnSpan="3"
-                android:background="#EFEFEF"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:padding="@dimen/dp_8"
-                android:text="宝岳测绘工程二部编号信息"
+                android:text="外业部分组信息"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_columnWeight="1"/>
@@ -101,7 +105,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="曹俭"
+                android:text="成乐"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -109,7 +113,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="01"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -117,7 +121,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="01"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -125,7 +129,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="陈波"
+                android:text="郭家纹"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -133,7 +137,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="02"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -141,7 +145,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="01"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -149,7 +153,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="陈森"
+                android:text="李虎"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -157,7 +161,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="03"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -165,7 +169,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="01"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -173,7 +177,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="杜琨"
+                android:text="李欢"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -181,7 +185,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="04"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -189,7 +193,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="02"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -197,7 +201,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="郭新新"
+                android:text="李泽新"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -205,7 +209,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="05"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -213,7 +217,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="02"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -221,7 +225,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="胡朝阳"
+                android:text="李元元"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -229,7 +233,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="06"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -237,7 +241,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="02"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -245,7 +249,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="简涛"
+                android:text="吴佩渊"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -253,7 +257,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="07"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -261,7 +265,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="03"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -269,7 +273,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text="蔺凯强"
+                android:text="朱慧玲"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -277,7 +281,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="08"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"
@@ -285,80 +289,7 @@
             <TextView
                 android:gravity="center"
                 android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text="王恒飞"
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text="朱登峰"
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text="汤臣超"
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
-                android:layout_gravity="fill"
-                android:textSize="@dimen/sp_16"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"/>
-            <TextView
-                android:gravity="center"
-                android:padding="@dimen/dp_5"
-                android:text=""
+                android:text="03"
                 android:layout_gravity="fill"
                 android:textSize="@dimen/sp_16"
                 app:layout_columnWeight="1"

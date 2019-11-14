@@ -1,70 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
-    android:layout_marginStart="@dimen/dp_10"
-    android:layout_marginEnd="@dimen/dp_10"
-    android:layout_marginTop="@dimen/dp_20"
-    android:layout_marginBottom="@dimen/dp_20"
     tools:context=".MainAct">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_24"
-        android:padding="@dimen/dp_8"
-        android:text="@string/workinfo"
-        android:drawablePadding="@dimen/dp_5"
-        android:onClick="user"
-        android:drawableStart="@drawable/user"/>
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="#cecece"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/user"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="user"
+            android:textColor="#FFE8A5"
+            android:padding="@dimen/dp_8"
+            android:text="@string/workinfo"
+            android:textSize="@dimen/sp_24" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_24"
-        android:padding="@dimen/dp_8"
-        android:text="@string/paper"
-        android:drawablePadding="@dimen/dp_5"
-        android:onClick="open"
-        android:drawableStart="@drawable/open"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#cecece" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="#cecece"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/open"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="open"
+            android:padding="@dimen/dp_8"
+            android:textColor="#FFE8A5"
+            android:text="@string/paper"
+            android:textSize="@dimen/sp_24" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_24"
-        android:padding="@dimen/dp_8"
-        android:text="@string/areas"
-        android:drawablePadding="@dimen/dp_5"
-        android:onClick="Data"
-        android:drawableStart="@drawable/areas"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#cecece" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="#cecece"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/map"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="map"
+            android:textColor="#FFE8A5"
+            android:padding="@dimen/dp_8"
+            android:text="@string/map"
+            android:textSize="@dimen/sp_24" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_24"
-        android:padding="@dimen/dp_8"
-        android:text="@string/numbers"
-        android:drawablePadding="@dimen/dp_5"
-        android:onClick="Nums"
-        android:drawableStart="@drawable/oper"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#cecece" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/areas"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="Data"
+            android:padding="@dimen/dp_8"
+            android:text="@string/areas"
+            android:textColor="#FFE8A5"
+            android:textSize="@dimen/sp_24" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#cecece" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/oper"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="Nums"
+            android:padding="@dimen/dp_8"
+            android:text="@string/numbers"
+            android:textColor="#FFE8A5"
+            android:textSize="@dimen/sp_24" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="#cecece" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/upload"
+            android:drawablePadding="@dimen/dp_5"
+            android:padding="@dimen/dp_8"
+            android:text="@string/identify"
+            android:textColor="#FFE8A5"
+            android:onClick="Ocr"
+            android:textSize="@dimen/sp_24" />
+
+    </LinearLayout>
 
 </LinearLayout>

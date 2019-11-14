@@ -7,6 +7,9 @@ import java.util.Set;
  *Created by LiHuan at 10:51 on 2019/2/15
  */
 
+/*
+ *辅助类:根据管线小类获得相应代号
+ */
 class TypeItemUtil {
     private static HashMap<String,String> pmap = new HashMap<>();
     static {

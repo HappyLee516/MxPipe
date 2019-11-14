@@ -8,6 +8,10 @@ import java.util.Map;
  *2018/11/15
  *15:26
  */
+
+/*
+ *辅助类，根据小类获取大类
+ */
 class ti_t_Util {
 
     private static Map<String, String> TYPE_FLAG = new HashMap<>();

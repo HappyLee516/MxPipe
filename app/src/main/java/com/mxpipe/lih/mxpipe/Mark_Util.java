@@ -132,7 +132,11 @@ import java.util.Map;
     }
 
     /*
-     *
+     * 获取符号名字
+     * @param i 1：特征 2：附属物
+     * @param s 特征/附属物属性值
+     * @param dalei 大类
+     * @param xiaolei 小类
      */
     String getMark(int i,String s,String dalei,String xiaolei){
         String mname = "1.dwg";

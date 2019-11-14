@@ -5,7 +5,9 @@ import android.widget.PopupWindow;
 
 /*
  *Created by LiHuan at 14:45 on 2019/3/14
+ * 自定义弹窗类，重写dismiss方法，实现点击弹窗外部是否关闭弹窗可控
  */
+
 public class Popup extends PopupWindow {
     private boolean isDismiss = false;
 

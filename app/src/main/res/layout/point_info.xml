@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00d4ff"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:padding="@dimen/dp_8">
 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="@string/close"
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/sp_16"/>
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/point"
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/sp_16"/>
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/ok"
             android:textSize="@dimen/sp_16"/>
 

@@ -21,7 +21,7 @@ import static com.mxpipe.lih.mxpipe.DaoruUtil.getPath;
 import static com.mxpipe.lih.mxpipe.DaoruUtil.getRealPathFromURI;
 
 /*
- *Created by LiHuan at 9:20 on 2019/2/21
+ * Created by LiHuan at 9:20 on 2019/2/21
  * 读取DAT文件数据工具类
  */
 class ReadDatUtil {

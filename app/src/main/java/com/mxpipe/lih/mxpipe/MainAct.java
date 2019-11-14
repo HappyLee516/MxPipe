@@ -62,6 +62,16 @@ public class MainAct extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+    public void Ocr(View v){
+        Intent myIntent = new Intent(getApplicationContext(), OcrActivity.class);
+        startActivity(myIntent);
+    }
+
+//    public void Upload(View v){
+//        Intent intent = new Intent(getApplicationContext(),UploadAct.class);
+//        startActivity(intent);
+//    }
+
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
@@ -74,4 +84,7 @@ public class MainAct extends AppCompatActivity {
         }
     }
 
+    public void map(View view) {
+
+    }
 }

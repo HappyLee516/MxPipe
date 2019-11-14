@@ -58,4 +58,23 @@
         android:textSize="@dimen/sp_16"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="#cfcfcf"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp_50"
+        android:paddingEnd="@dimen/dp_50"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:id="@+id/tv_route"
+        android:text="@string/route"
+        android:textColor="#000"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        />
+
 </LinearLayout>

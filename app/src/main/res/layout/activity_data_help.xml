@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     tools:context=".Areas">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cecece"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <TextView
@@ -29,6 +30,7 @@
             android:layout_weight="4"
             android:padding="@dimen/dp_5"
             android:text="@string/areas"
+            android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"
             android:textSize="@dimen/sp_20"/>
 
@@ -40,6 +42,7 @@
             android:onClick="Back"
             android:padding="@dimen/dp_5"
             android:text="@string/back"
+            android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"
             android:textSize="@dimen/sp_16"/>
     </LinearLayout>
@@ -61,10 +64,11 @@
             android:layout_width="match_parent"
             android:layout_row="1"
             android:layout_columnSpan="3"
-            android:background="#EFEFEF"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:padding="@dimen/dp_8"
-            android:text="西安市管线区划代码表"
+            android:text="西安市测区代码表"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_columnWeight="1"/>

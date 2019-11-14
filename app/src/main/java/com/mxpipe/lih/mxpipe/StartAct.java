@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -82,7 +81,6 @@ import java.util.Set;
 
 import io.objectbox.Box;
 
-import static android.os.Build.VERSION_CODES.M;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.Daochu;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.addBl2mdb;
@@ -92,6 +90,12 @@ import static com.mxpipe.lih.mxpipe.DaochuUtil.lm;
 import static com.mxpipe.lih.mxpipe.DaochuUtil.pm;
 import static com.mxpipe.lih.mxpipe.DaoruUtil.Mdb2Bls;
 import static com.mxpipe.lih.mxpipe.DaoruUtil.Mdb2Bps;
+import static com.mxpipe.lih.mxpipe.DataUtil.Bmline2xdata;
+import static com.mxpipe.lih.mxpipe.DataUtil.bmpoint2xdata;
+import static com.mxpipe.lih.mxpipe.DataUtil.getDeep;
+import static com.mxpipe.lih.mxpipe.DataUtil.set;
+import static com.mxpipe.lih.mxpipe.DataUtil.unicode2point;
+import static com.mxpipe.lih.mxpipe.PermissionUtil.hasPermission;
 import static com.mxpipe.lih.mxpipe.ReadDatUtil.ReadDat;
 import static org.cocos2dx.lib.Cocos2dxHelper.getActivity;
 
@@ -219,7 +223,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     }
 
     public StartAct() {
-        initWorkDir(Environment.getExternalStorageDirectory() + File.separator + "BY_PIPE");
+        initWorkDir(Environment.getExternalStorageDirectory() + File.separator + "DWG4PIPE");
         setPackageName("com.mxpipe.lih.mxpipe");
     }
 
@@ -351,9 +355,9 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         MxLibDraw.addLinetype("MyLine", "2,-1", 1);
         MxLibDraw.setLineType("MyLine");
 
-        MxLibDraw.setDrawColor(getColor(MxFunction.getxDataString(selected, "type")));
+        MxLibDraw.setDrawColor(DataUtil.getMyColor(MxFunction.getxDataString(selected, "type")));
         Log.i("DynDrawLine", "--" + selected);
-        MxLibDraw.setDrawColor(getColor(MxFunction.getxDataString(selected, "type")));
+        MxLibDraw.setDrawColor(DataUtil.getMyColor(MxFunction.getxDataString(selected, "type")));
         final long id = MxLibDraw.drawLine(pt3.x, pt3.y, pt.x, pt.y);
         McDbLayerTableRecord tr = new McDbLayerTableRecord("DIRECTIONLINE");
         tr.setIsLocked(true);
@@ -959,7 +963,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                         }
                     }
 
-                    String code = MxFunction.getxDataString(selected,"code");
+                    String code = MxFunction.getxDataString(selected, "code");
                     String unicode = MxFunction.getxDataString(selected, "unicode");
                     x = Double.parseDouble(MxFunction.getxDataString(selected, "x"));
                     y = Double.parseDouble(MxFunction.getxDataString(selected, "y"));
@@ -1017,13 +1021,13 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     String n_item = fushuwu.getSelectedItem().toString();
 
                     if (n_type.equals(o_type) || n_item.equals(o_item)) {
-                        Log.i("修改，执行113","113");
+                        Log.i("修改，执行113", "113");
                         pid = selected;
                         bmpoint2xdata(bmPoint, selected);
                         MxFunction.doCommand(113);
                         mMyHandler.sendEmptyMessage(1);
                     } else {
-                        Log.i("修改，执行112","112");
+                        Log.i("修改，执行112", "112");
                         MxFunction.doCommand(112);
                     }
 
@@ -1839,8 +1843,8 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
 
                 McDbLayerTableRecord mcdtr = new McDbLayerTableRecord(pl);
                 McDbLayerTableRecord mcdtr1 = new McDbLayerTableRecord(tl);
-                mcdtr.setColor((int) getColor(param)[0], (int) getColor(param)[1], (int) getColor(param)[2]);
-                mcdtr1.setColor((int) getColor(param)[0], (int) getColor(param)[1], (int) getColor(param)[2]);
+                mcdtr.setColor((int) DataUtil.getMyColor(param)[0], (int) DataUtil.getMyColor(param)[1], (int) DataUtil.getMyColor(param)[2]);
+                mcdtr1.setColor((int) DataUtil.getMyColor(param)[0], (int) DataUtil.getMyColor(param)[1], (int) DataUtil.getMyColor(param)[2]);
 
                 String co = bmPoint.getMap_dot();
                 Log.i("点号为----", co);
@@ -1857,7 +1861,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 File af = block.getAbsoluteFile();
                 String s1 = af.getPath();
 
-                color = getColor(type.getSelectedItem().toString());
+                color = DataUtil.getMyColor(type.getSelectedItem().toString());
                 MxLibDraw.setDrawColor(color);
                 MxLibDraw.setLineType("point");
                 MxLibDraw.setLayerName(pl);
@@ -1877,7 +1881,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     blkRef.setDrawOrder(9);
                 }
 
-                color = getColor(type.getSelectedItem().toString());
+                color = DataUtil.getMyColor(type.getSelectedItem().toString());
                 MxLibDraw.setDrawColor(color);
                 MxLibDraw.setLayerName(tl);
                 MxLibDraw.setLineType("text");
@@ -1995,7 +1999,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     MxLibDraw.addLayer(TypeItemUtil.getPre(ltype) + "LINE");
                 }
                 MxLibDraw.setLayerName(TypeItemUtil.getPre(ltype) + "LINE");
-                long[] col = getColor(ti_t_Util.getType(ltype));
+                long[] col = DataUtil.getMyColor(ti_t_Util.getType(ltype));
                 MxLibDraw.setDrawColor(col);
                 MxLibDraw.addLinetype("line", "1", 1);
                 MxLibDraw.setLineType("line");
@@ -2579,11 +2583,50 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     }
                 });
                 break;
+            case 26://上传
+                Map<String, File> files = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
+                String url = "http://192.168.50.87:1429/plus-task-file/fileUpload";
+                if (sp == null) {
+                    sp = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
+                }
+                String tno = sp.getString("tno", null);
+                String pno = sp.getString("pno", null);
+                params.put("user", tno + pno);
+                String filename = MxFunction.currentFileName();
+                if (filename.endsWith("mwg")) {
+                    filename = filename.replace("mwg", "dwg");
+                    File Dwg = new File(filename);
+                    if (Dwg.exists()) {
+                        files.put("dwg", Dwg);
+                    } else {
+                        MxFunction.writeFile(filename);
+                        files.put("dwg", Dwg);
+                    }
+                } else if (filename.endsWith("dwg") || filename.endsWith("DWG")) {
+                    File Dwg = new File(filename);
+                    MxFunction.writeFile(filename);
+                    files.put("dwg", Dwg);
+                }
+                String mdbname = mdbName();
+                File Mdb = new File(mdbname);
+                if (Mdb.exists()) {
+                    files.put("mdb", Mdb);
+                }
+                try {
+                    String res = UploadUtil.post(url, params, files);
+                    Log.i("文件数量", "" + files.size());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
             case 55://导出
                 //检验读写权限
                 if (!hasPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     String[] ps = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                    requestPermissions(StartAct.this, ps, 1);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        PermissionUtil.requestPermissions(StartAct.this, ps, 1);
+                    }
                 }
 
                 File nf1 = NewDatabase();
@@ -2602,7 +2645,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                         }
                     });
                 }
-
                 break;
             case 56://导入mdb
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -2618,12 +2660,12 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                 break;
             case 58://根据bps、bls成图
                 for (BmPoint bp : bps) {//遍历bps，生成点
-                    Log.i("遍历bps", bps.size() + "");
+                    Log.i("遍历bps", bp.toString());
                     mark_name = "1.dwg";
                     Mark_Util mu = new Mark_Util();
                     String dalei = bp.getPipeline_type();
                     String xiaolei = bp.getPipetype();
-                    Log.i("大类：小类",dalei + ":" + xiaolei);
+                    Log.i("大类：小类", dalei + ":" + xiaolei);
                     if (" ".equals(bp.getFeature()) || "".equals(bp.getFeature()) || bp.getFeature() == null) {
                         if (mu.getMark(2, bp.getAppendages(), dalei, xiaolei) != null)
                             mark_name = mu.getMark(2, bp.getAppendages(), dalei, xiaolei);
@@ -2637,29 +2679,24 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     } else {
                         mark_name = "1.dwg";
                     }
-                    Log.i("符号name",mark_name);
+                    Log.i("符号name", mark_name);
                     copyAssetAndWrite(mark_name);
                     File block2 = new File(getCacheDir(), mark_name);
                     File af2 = block2.getAbsoluteFile();
                     String s3 = af2.getPath();
 
-                    long[] color = StartAct.getColor(bp.getPipeline_type());
-                    MxLibDraw.setDrawColor(color);
+                    long[] color = DataUtil.getMyColor(dalei);
 
-                    String pre = TypeItemUtil.getPre(bp.getPipeline_type());
-                    MxLibDraw.setLayerName(pre + "POINT");
+                    String pre = TypeItemUtil.getPre(xiaolei);
                     McDbLayerTable mcDbLayerTable = MxFunction.getCurrentDatabase().getLayerTable();
                     if (!mcDbLayerTable.has(pre + "POINT")) {
                         MxLibDraw.addLayer(pre + "POINT");
                     }
                     MxLibDraw.setLineType("point");
+                    MxLibDraw.setLayerName(pre + "POINT");
+                    MxLibDraw.setDrawColor(color);
                     MxLibDraw.insertBlock(s3, bp.getExploration_dot());
-                    long bid58 = 0;
-                    if(bp.getMap_dot() == null) {
-                        bid58 = MxLibDraw.drawBlockReference(bp.getX(), bp.getY(), bp.getExploration_dot(), 0.5, 0);
-                    }else {
-                        bid58 = MxLibDraw.drawBlockReference(bp.getX(), bp.getY(), bp.getMap_dot(), 0.5, 0);
-                    }
+                    long bid58 = MxLibDraw.drawBlockReference(bp.getX(), bp.getY(), bp.getExploration_dot(), 0.5, 0);
                     if (bid58 != 0) {
                         McDbBlockReference blkRef58 = (McDbBlockReference) MxFunction.objectIdToObject(bid58);
                         McGePoint3d pos = blkRef58.position();
@@ -2671,9 +2708,9 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                     MxLibDraw.setLayerName(pre + "TEXT");
                     MxLibDraw.setLineType("text");
                     long tid = 0;
-                    if(bp.getMap_dot() == null) {
+                    if (bp.getMap_dot() == null) {
                         tid = MxLibDraw.drawText(bp.getX(), bp.getY() + 0.4, 1, bp.getExploration_dot());
-                    }else {
+                    } else {
                         tid = MxLibDraw.drawText(bp.getX(), bp.getY() + 0.4, 1, bp.getMap_dot());
                     }
                     McDbText text = new McDbText(tid);
@@ -2713,7 +2750,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
                                 MxLibDraw.addLayer(pr + "LINE");
                             }
                             MxLibDraw.setLayerName(pr + "LINE");
-                            MxLibDraw.setDrawColor(StartAct.getColor(dalei));
+                            MxLibDraw.setDrawColor(DataUtil.getMyColor(dalei));
                             MxLibDraw.setLineType("line");
 
                             long lid58 = MxLibDraw.drawLine(sx, sy, ex, ey);
@@ -3182,23 +3219,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
         return true;
     }
 
-    //验证权限
-    public static boolean hasPermission(Context context, String permission) {
-        if (Build.VERSION.SDK_INT >= M) {
-            if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //申请权限
-    public static void requestPermissions(Activity activity, String[] permissions, int requestCode) {
-        if (Build.VERSION.SDK_INT >= M) {
-            activity.requestPermissions(permissions, requestCode);
-        }
-    }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (parent.getId()) {
@@ -3423,76 +3443,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    private void set(Spinner s, String[] data, String value) {
-        for (int x = 0; x < data.length; x++) {
-            if (data[x].equals(value)) {
-                s.setSelection(x);
-            }
-        }
-    }
-
-    //根据大类获取颜色,参数type:大类
-    public static long[] getColor(String type) {
-        switch (type) {
-            case "给水":
-                color[0] = 0;
-                color[1] = 63;
-                color[2] = 255;
-                break;
-            case "排水":
-                color[0] = 51;
-                color[1] = 51;
-                color[2] = 51;
-                break;
-            case "燃气":
-                color[0] = 204;
-                color[1] = 0;
-                color[2] = 153;
-                break;
-            case "热力":
-                color[0] = 204;
-                color[1] = 153;
-                color[2] = 0;
-                break;
-            case "电力":
-                color[0] = 255;
-                color[1] = 0;
-                color[2] = 0;
-                break;
-            case "通讯":
-                color[0] = 0;
-                color[1] = 76;
-                color[2] = 0;
-                break;
-            case "工业":
-                color[0] = 255;
-                color[1] = 127;
-                color[2] = 0;
-                break;
-            case "综合管沟":
-                color[0] = 128;
-                color[1] = 128;
-                color[2] = 128;
-                break;
-            case "人防":
-                color[0] = 128;
-                color[1] = 128;
-                color[2] = 128;
-                break;
-            case "地铁":
-                color[0] = 255;
-                color[1] = 255;
-                color[2] = 0;
-                break;
-            case "不明":
-                color[0] = 128;
-                color[1] = 128;
-                color[2] = 128;
-                break;
-        }
-        return color;
     }
 
     /*
@@ -3864,7 +3814,7 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
 
     /*
      *获得当前打开图纸所对应的mdb文件名
-     * mdb文件名与当前打开图纸名一样，后缀不同
+     *mdb文件名与当前打开图纸名一样，后缀不同
      */
     static String mdbName() {
         String name = MxFunction.currentFileName();
@@ -4231,133 +4181,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
 
     }
 
-    /*获得管点相关埋深
-     *@param falg 标识：1-起点埋深 2-终点埋深
-     *@param code 管点点号
-     *@param type 管点类型
-     */
-    String getDeep(int flag, String code, String type) {
-        Log.i("getDeep", flag + "--" + code + "--" + type);
-        String result = null;
-        MrxDbgSelSet ss = new MrxDbgSelSet();
-        MxResbuf filter = new MxResbuf();
-        filter.addString(TypeItemUtil.getPre(type) + "LINE", 8);
-        ss.allSelect(filter);
-        Log.i("ss", ss.size() + "");
-        switch (flag) {
-            case 1:
-                for (int i = 0; i < ss.size(); i++) {
-                    String sec = MxFunction.getxDataString(ss.at(i), "ecode");
-                    Log.i("ecode", sec);
-                    if (code.equals(sec)) {
-                        result = MxFunction.getxDataString(ss.at(i), "zhdmsh");
-                    }
-                }
-                break;
-            case 2:
-                for (int i = 0; i < ss.size(); i++) {
-                    String ssc = MxFunction.getxDataString(ss.at(i), "scode");
-                    Log.i("scode", ssc);
-                    if (code.equals(ssc)) {
-                        result = MxFunction.getxDataString(ss.at(i), "qdmsh");
-                    }
-                }
-                break;
-        }
-        return result;
-    }
-
-    /*根据物探点号和类别匹配图上点，得到对应管点ID
-     * @param unicode 物探点号
-     * @param ti 管点类别(小类)
-     */
-    long unicode2point(String unicode, String ti) {
-        Log.i("unicode2point", unicode + "--" + ti);
-        long re = 0;
-
-        MrxDbgSelSet ss = new MrxDbgSelSet();
-        MxResbuf filter = new MxResbuf();
-        filter.addString(TypeItemUtil.getPre(ti) + "POINT", 8);
-        ss.allSelect(filter);
-        for (int i = 0; i < ss.size(); i++) {
-            String puni = MxFunction.getxDataString(ss.at(i), "unicode");
-            if (unicode.equals(puni)) {
-                re = ss.at(i);
-            }
-        }
-        return re;
-    }
-
-    /*
-     *将点实体封装的属性信息保存至图中
-     * @param bp 点实体对象
-     * @param bid 图上点的ID
-     */
-    void bmpoint2xdata(BmPoint bmPoint, long bid) {
-        MxFunction.setxDataString(bid, "unicode", bmPoint.getExploration_dot());
-        MxFunction.setxDataString(bid, "code", bmPoint.getMap_dot());
-        MxFunction.setxDataString(bid, "x", String.valueOf(bmPoint.getY()));
-        MxFunction.setxDataString(bid, "y", String.valueOf(bmPoint.getX()));
-        Log.i("x--y", x + "---" + y);
-        MxFunction.setxDataString(bid, "type", bmPoint.getPipeline_type());
-        MxFunction.setxDataString(bid, "type_item", bmPoint.getPipetype());
-        MxFunction.setxDataString(bid, "tezheng", bmPoint.getFeature());
-        MxFunction.setxDataString(bid, "fushuwu", bmPoint.getAppendages());
-
-        MxFunction.setxDataString(bid, "jdmsh", String.valueOf(bmPoint.getBottom_hole_depth()));
-        MxFunction.setxDataString(bid, "jgxzh", bmPoint.getWell_shape());
-        MxFunction.setxDataString(bid, "jgchc", bmPoint.getManhole_size());
-        MxFunction.setxDataString(bid, "jgczh", bmPoint.getManhole_material());
-        MxFunction.setxDataString(bid, "jgzht", bmPoint.getManhole_type());
-        MxFunction.setxDataString(bid, "jczh", bmPoint.getWell_material());
-        MxFunction.setxDataString(bid, "jchc", bmPoint.getWell_size());
-
-        MxFunction.setxDataString(bid, "dmgch", String.valueOf(bmPoint.getGround_elevation()));
-        MxFunction.setxDataString(bid, "shyzht", bmPoint.getUsed_status());
-        MxFunction.setxDataString(bid, "shjly", bmPoint.getData_source());
-        MxFunction.setxDataString(bid, "bzh", bmPoint.getBeizhu());
-
-    }
-
-    /*
-     *将线实体封装的属性信息保存至图中
-     * @param bl 线实体对象
-     * @param lid 图上线的ID
-     */
-    void Bmline2xdata(BmLine bl, long lid) {
-        MxFunction.setxDataString(lid, "scode", bl.getTushangqidian());
-        MxFunction.setxDataString(lid, "ecode", bl.getTushangzhongdian());
-        MxFunction.setxDataString(lid, "qd_unicode", bl.getStart_point());
-        MxFunction.setxDataString(lid, "zhd_unicode", bl.getConn_direction());
-        MxFunction.setxDataString(lid, "type", bl.getPipetype());
-        MxFunction.setxDataString(lid, "qdmsh", String.valueOf(bl.getStart_depth()));
-        MxFunction.setxDataString(lid, "zhdmsh", String.valueOf(bl.getEnd_depth()));
-        MxFunction.setxDataString(lid, "mshfsh", bl.getBurial_type());
-        String gj = bl.getPipe_diameter();
-        String gj1, gj2;
-        if (gj != null && gj.contains("X")) {
-            int x = gj.indexOf("X");
-            gj1 = gj.substring(0, x);
-            gj2 = gj.substring(x + 1);
-        } else if (gj != null && gj.contains("*")) {
-            int x = gj.indexOf("*");
-            gj1 = gj.substring(0, x);
-            gj2 = gj.substring(x + 1);
-        } else {
-            gj1 = gj;
-            gj2 = " ";
-        }
-        MxFunction.setxDataString(lid, "gj1", gj1);
-        MxFunction.setxDataString(lid, "gj2", gj2);
-        MxFunction.setxDataString(lid, "dlmch", bl.getRoad_name());
-        MxFunction.setxDataString(lid, "czh", bl.getMaterial());
-        MxFunction.setxDataString(lid, "lx", bl.getFlow_direction());
-        MxFunction.setxDataString(lid, "tsh", bl.getCable_count());
-        MxFunction.setxDataString(lid, "zksh", bl.getHole_count());
-        MxFunction.setxDataString(lid, "yyksh", bl.getUsed_holecount());
-        MxFunction.setxDataString(lid, "yl", bl.getVoltage_pressure());
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -4374,7 +4197,6 @@ public class StartAct extends MxDrawActivity implements AdapterView.OnItemSelect
             codeNumberBox = MyApplication.getApplication().getBoxStore().boxFor(CodeNumber.class);
         }
     }
-
 
     @Override
     protected void onPause() {
